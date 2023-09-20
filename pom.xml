@@ -19,7 +19,7 @@
 		<module>soot-infoflow-android</module>
 		<module>soot-infoflow-summaries</module>
 		<module>soot-infoflow-cmd</module>
-    <module>dataleak</module>
+    	<module>dataleak</module>
   </modules>
 
 	<dependencyManagement>

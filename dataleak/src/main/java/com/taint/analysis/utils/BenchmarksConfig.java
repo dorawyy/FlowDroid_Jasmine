@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BenchmarksConfig {
-    private static String basePath = "/Users/FlowDroidPlus/demo";
+    private static String basePath = "/data/yingying/mista/jasmineData/Benchmark_FlowDroid";
     public static List<String> getSourceProcessDir(String benchmark) {
         List<String> dir = new ArrayList<>();
         switch (benchmark) {
