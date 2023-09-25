@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v2.1
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
+ * 
  * Contributors: Christian Fritz, Steven Arzt, Siegfried Rasthofer, Eric
  * Bodden, and others.
  ******************************************************************************/
@@ -13,7 +13,6 @@ package soot.jimple.infoflow.android.test.otherAPKs;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.Before;
 import org.xmlpull.v1.XmlPullParserException;
 
 import soot.jimple.infoflow.InfoflowConfiguration.ImplicitFlowMode;
@@ -23,12 +22,10 @@ import soot.jimple.infoflow.results.InfoflowResults;
 import soot.jimple.infoflow.taintWrappers.EasyTaintWrapper;
 
 public class JUnitTests {
-	@Before
-	public void setEnv() {}
 
 	/**
 	 * Analyzes the given APK file for data flows
-	 *
+	 * 
 	 * @param fileName The full path and file name of the APK file to analyze
 	 * @return The data leaks found in the given APK file
 	 * @throws IOException            Thrown if the given APK file or any other
@@ -42,7 +39,7 @@ public class JUnitTests {
 
 	/**
 	 * Analyzes the given APK file for data flows
-	 *
+	 * 
 	 * @param fileName              The full path and file name of the APK file to
 	 *                              analyze
 	 * @param enableImplicitFlows   True if implicit flows shall be tracked,
@@ -65,14 +62,13 @@ public class JUnitTests {
 		if (androidJars == null)
 			throw new RuntimeException("Android JAR dir not set");
 		System.out.println("Loading Android.jar files from " + androidJars);
+
 		SetupApplication setupApplication = new SetupApplication(androidJars, fileName);
 
 		// Find the taint wrapper file
 		File taintWrapperFile = new File("EasyTaintWrapperSource.txt");
 		if (!taintWrapperFile.exists())
 			taintWrapperFile = new File("../soot-infoflow/EasyTaintWrapperSource.txt");
-		//todo 这里加上taintwrapper的
-
 		setupApplication.setTaintWrapper(new EasyTaintWrapper(taintWrapperFile));
 
 		// Configure the analysis

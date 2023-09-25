@@ -21,11 +21,12 @@ public class OtherAPKTests extends JUnitTests {
 	@Test
 	public void runTest2() throws IOException, XmlPullParserException {
 		InfoflowResults res = analyzeAPKFile
-//				("testAPKs/enriched1.apk", false, false, false);
-		("testAPKs/test-flow.apk", false, false, false);
-
+				// ("testAPKs/enriched1.apk", false, false, false);
+				("testAPKs/test-flow.apk", false, false, false); // JASMINE changes
+		
 		Assert.assertNotNull(res);
-		Assert.assertEquals(2, res.size());
+		// Assert.assertEquals(1, res.size());
+		Assert.assertEquals(2, res.size()); // JASMINE changes
 	}
 	
 	@Test

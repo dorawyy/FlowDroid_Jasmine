@@ -36,7 +36,6 @@ import soot.jimple.infoflow.sourcesSinks.definitions.SourceSinkType;
 
 /**
  * Parser for the permissions to method map of Adrienne Porter Felt.
- * 解析 Adrienne Porter Felt 的方法映射的权限。
  * 
  * @author Siegfried Rasthofer
  */
@@ -146,10 +145,13 @@ public class PermissionMethodParser implements ISourceSinkDefinitionProvider {
 		// Create the source/sink definitions
 		for (AndroidMethod am : methods.values()) {
 			MethodSourceSinkDefinition singleMethod = new MethodSourceSinkDefinition(am);
-			if(singleMethod.getMethod().getMethodName().contains("getdataFromProperties"))
+			
+			// JASMINE changes
+			if (singleMethod.getMethod().getMethodName().contains("getdataFromProperties"))
 			{
 				System.out.println("here");
 			}
+
 			if (am.getSourceSinkType().isSource())
 				sourceList.add(singleMethod);
 			if (am.getSourceSinkType().isSink())

@@ -108,7 +108,7 @@ import soot.util.MultiMap;
 
 public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 
-	private final Logger logger = LoggerFactory.getLogger(SetupApplication.class);
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	protected ISourceSinkDefinitionProvider sourceSinkProvider;
 	protected MultiMap<SootClass, AndroidCallbackDefinition> callbackMethods = new HashMultiMap<>();
@@ -1465,7 +1465,6 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 
 		// In one-component-at-a-time, we do not have a single entry point
 		// creator. For every entry point, run the data flow analysis.
-		//如果一次分析一个组件，才需要entrypoints，否则还是打包一起分析
 		if (config.getOneComponentAtATime()) {
 			List<SootClass> entrypointWorklist = new ArrayList<>(entrypoints);
 			while (!entrypointWorklist.isEmpty()) {
@@ -1481,7 +1480,7 @@ public class SetupApplication implements ITaintWrapperDataFlowAnalysis {
 		// We return the aggregated results
 		this.infoflow = null;
 		resultAggregator.clearLastResults();
-		printSources();
+		printSources(); // JASMINE change
 		return resultAggregator.getAggregatedResults();
 	}
 

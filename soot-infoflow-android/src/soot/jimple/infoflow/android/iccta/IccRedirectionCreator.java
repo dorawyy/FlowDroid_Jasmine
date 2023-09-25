@@ -24,7 +24,7 @@ import soot.Unit;
 import soot.Value;
 import soot.ValueBox;
 import soot.VoidType;
-import soot.javaToJimple.LocalGenerator;
+import soot.LocalGenerator;
 import soot.jimple.InstanceInvokeExpr;
 import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
@@ -182,7 +182,7 @@ public class IccRedirectionCreator {
 		final JimpleBody b = Jimple.v().newBody(newSM);
 		newSM.setActiveBody(b);
 
-		LocalGenerator lg = new LocalGenerator(b);
+		LocalGenerator lg = Scene.v().createLocalGenerator(b);
 
 		Local originActivityParameterLocal = lg.generateLocal(originActivity.getType());
 		Unit originActivityParameterU = Jimple.v().newIdentityStmt(originActivityParameterLocal,
@@ -239,7 +239,7 @@ public class IccRedirectionCreator {
 		JimpleBody b = Jimple.v().newBody(newSM);
 		newSM.setActiveBody(b);
 
-		LocalGenerator lg = new LocalGenerator(b);
+		LocalGenerator lg = Scene.v().createLocalGenerator(b);
 
 		// identity
 		Local intentParameterLocal = lg.generateLocal(INTENT_TYPE);
@@ -270,7 +270,7 @@ public class IccRedirectionCreator {
 		JimpleBody b = Jimple.v().newBody(newSM);
 		newSM.setActiveBody(b);
 
-		LocalGenerator lg = new LocalGenerator(b);
+		LocalGenerator lg = Scene.v().createLocalGenerator(b);
 
 		// identity
 		Local intentParameterLocal = lg.generateLocal(INTENT_TYPE);
@@ -311,7 +311,7 @@ public class IccRedirectionCreator {
 		JimpleBody b = Jimple.v().newBody(newSM);
 		newSM.setActiveBody(b);
 
-		LocalGenerator lg = new LocalGenerator(b);
+		LocalGenerator lg = Scene.v().createLocalGenerator(b);
 
 		Local originActivityParameterLocal = lg.generateLocal(serviceConnection.getType());
 		b.getUnits().add(Jimple.v().newIdentityStmt(originActivityParameterLocal,
@@ -367,7 +367,7 @@ public class IccRedirectionCreator {
 		JimpleBody b = Jimple.v().newBody(newSM);
 		newSM.setActiveBody(b);
 
-		LocalGenerator lg = new LocalGenerator(b);
+		LocalGenerator lg = Scene.v().createLocalGenerator(b);
 
 		// all parameters
 		List<Local> locals = new ArrayList<>();

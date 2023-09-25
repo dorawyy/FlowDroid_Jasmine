@@ -32,7 +32,6 @@ import soot.jimple.infoflow.util.SystemClassHandler;
 /**
  * SourceSinkManager for Android applications. This class uses precise access
  * path-based source and sink definitions.
- * 适用于Android应用程序的 SourceSinkManager。 此类使用基于访问路径的精确source和sink定义。
  * 
  * @author Steven Arzt
  *

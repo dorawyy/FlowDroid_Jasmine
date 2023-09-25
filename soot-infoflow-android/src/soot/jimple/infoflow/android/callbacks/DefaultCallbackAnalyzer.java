@@ -38,7 +38,7 @@ import soot.util.queue.QueueReader;
  * aims for precision. It tries to rule out callbacks registered in unreachable
  * code. The mapping between components and callbacks is as precise as possible.
  * 
- * @author Steven Ar zt
+ * @author Steven Arzt
  *
  */
 public class DefaultCallbackAnalyzer extends AbstractCallbackAnalyzer implements IMemoryBoundedSolver {
