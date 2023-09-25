@@ -1,5 +1,5 @@
 {
-  "source": "/Users/FlowDroidPlus/dataleak/src/main/resources/source.json",
-  "main_class": "com.ruoyi.RuoYiApplication",
-  "edge_config": "/Users/FlowDroidPlus/dataleak/src/main/resources/config.properties"
+  "source": "/data/yingying/mista/jasmineData/FlowDroid_Jasmine_new/dataleak/src/main/resources/source.json",
+  "main_class": "com.macro.mall.MallAdminApplication",
+  "edge_config": "/data/yingying/mista/jasmineData/FlowDroid_Jasmine_new/dataleak/src/main/resources/config.properties"
 }
