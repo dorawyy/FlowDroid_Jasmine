@@ -405,7 +405,7 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 				final Stmt stmt = (Stmt) src;
 				final InvokeExpr ie = (stmt != null && stmt.containsInvokeExpr()) ? stmt.getInvokeExpr() : null;
 
-				final Local[] paramLocals = dest.retrieveActiveBody().getParameterLocals().toArray(new Local[0]);
+				final Local[] paramLocals = dest.getActiveBody().getParameterLocals().toArray(new Local[0]);
 
 				// This is not cached by Soot, so accesses are more expensive
 				// than one might think
@@ -429,14 +429,13 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 					}
 
 					private Set<Abstraction> computeTargetsInternal(Abstraction d1, Abstraction source) {
-					//核心计算callflow的实现
 						if (manager.getConfig().getStopAfterFirstFlow() && !results.isEmpty())
 							return null;
 						if (source == getZeroValue())
 							return null;
 
 						// Do not propagate into Soot library classes if that
-						// optimization is enabled 在这里可以排除我们不需要的类，这样的好处是我们不需要加载这些类
+						// optimization is enabled
 						if (isExcluded(dest))
 							return null;
 
@@ -467,7 +466,7 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 						for (AccessPath ap : resMapping) {
 							if (ap != null) {
 								// If the variable is never read in the callee,
-								// there is no need to propagate it through 形参转实参的话，可以映射abstraction
+								// there is no need to propagate it through
 								if (aliasing.getAliasingStrategy().isLazyAnalysis() || source.isImplicit()
 										|| interproceduralCFG().methodReadsValue(dest, ap.getPlainValue())) {
 									Abstraction newAbs = source.deriveNewAbstraction(ap, stmt);
@@ -778,7 +777,6 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 
 						ByReferenceBoolean killSource = new ByReferenceBoolean();
 						ByReferenceBoolean killAll = new ByReferenceBoolean();
-						//rule这里可以通往taintwrapper，taintwrapper可以是easy或者是summary
 						Set<Abstraction> res = propagationRules.applyCallToReturnFlowFunction(d1, newSource, iCallStmt,
 								killSource, killAll, true);
 						if (killAll.value)
@@ -1031,7 +1029,6 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 
 	/**
 	 * Gets the results of the data flow analysis
-	 * 获取数据流分析的结果
 	 */
 	public TaintPropagationResults getResults() {
 		return this.results;

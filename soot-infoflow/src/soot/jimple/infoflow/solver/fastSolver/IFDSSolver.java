@@ -39,7 +39,6 @@ import heros.SynchronizedBy;
 import heros.ZeroedFlowFunctions;
 import heros.solver.Pair;
 import heros.solver.PathEdge;
-import soot.Body;
 import soot.SootMethod;
 import soot.Unit;
 import soot.jimple.infoflow.collect.MyConcurrentHashMap;
@@ -54,7 +53,6 @@ import soot.jimple.toolkits.ide.icfg.BiDiInterproceduralCFG;
 /**
  * A solver for an {@link IFDSTabulationProblem}. This solver is not based on
  * the IDESolver implementation in Heros for performance reasons.
- * {@link IFDSTabulationProblem}的解算器。由于性能原因，此解算器不是基于HERO中的IDESolver实现。
  * 
  * @param <N> The type of nodes in the interprocedural control-flow graph.
  *        Typically {@link Unit}.
@@ -178,21 +176,16 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 	 * Runs the solver on the configured problem. This can take some time.
 	 */
 	public void solve() {
-		System.out.println("test---soot.jimple.infoflow.solver.fastSolver.IFDSSolver");
-		reset();//强制终止解算器后，将解算器重置为其初始状态。调用此方法后，解算器将接受新任务。
+		reset();
 
 		// Notify the listeners that the solver has been started
-		//通知listeners 求解器已启动
 		for (IMemoryBoundedSolverStatusNotification listener : notificationListeners)
 			listener.notifySolverStarted(this);
 
-		//安排初始种子的处理，启动分析。
-		//客户端只有在自己执行同步时才应该调用此方法。通常，应该调用{@link#solve（）}。
 		submitInitialSeeds();
 		awaitCompletionComputeValuesAndShutdown();
 
 		// Notify the listeners that the solver has been terminated
-		//通知listeners 求解器已终止
 		for (IMemoryBoundedSolverStatusNotification listener : notificationListeners)
 			listener.notifySolverTerminated(this);
 	}
@@ -201,21 +194,12 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 	 * Schedules the processing of initial seeds, initiating the analysis. Clients
 	 * should only call this methods if performing synchronization on their own.
 	 * Normally, {@link #solve()} should be called instead.
-	 * 安排初始种子的处理，启动分析。客户端只有在自己执行同步时才应该调用此方法。通常，应该调用{@link#solve（）}。
 	 */
 	protected void submitInitialSeeds() {
-//		System.out.println("test---submitInitialSeeds()---initialSeeds.entrySet().size()" + initialSeeds.entrySet().size());//6
 		for (Entry<N, Set<D>> seed : initialSeeds.entrySet()) {
-//			System.out.println("test---seed: " + seed);
 			N startPoint = seed.getKey();
-//			System.out.println("test---startPoint: " + startPoint);
-//			System.out.println("test---seed.getValue(): " + seed.getValue());
-			for (D val : seed.getValue()) {
-//				System.out.println("test---val: " + val);
-//				System.out.println("test---zeroValue: " + zeroValue);
-// 				System.out.println("test---submitInitialSeeds()中调用propagate() startPoint:" + startPoint);
+			for (D val : seed.getValue())
 				propagate(zeroValue, startPoint, val, null, false);
-			}
 			addFunction(new PathEdge<N, D>(zeroValue, startPoint, zeroValue));
 		}
 	}
@@ -223,7 +207,6 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 	/**
 	 * Awaits the completion of the exploded super graph. When complete, computes
 	 * result values, shuts down the executor and returns.
-	 * 等待分解超级图的完成。完成后，计算结果值，关闭执行器并返回。
 	 */
 	protected void awaitCompletionComputeValuesAndShutdown() {
 		{
@@ -290,7 +273,6 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 	 * @param edge an edge whose target node resembles a method call
 	 */
 	private void processCall(PathEdge<N, D> edge) {
-	  //method summary
 		final D d1 = edge.factAtSource();
 		final N n = edge.getTarget(); // a call node; line 14...
 
@@ -299,17 +281,17 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 		Collection<N> returnSiteNs = icfg.getReturnSitesOfCallAt(n);
 
 		// for each possible callee
-    //如果我们不需要进入分析的话，会省掉很大一部分运行时间
 		Collection<SootMethod> callees = icfg.getCalleesOfCallAt(n);
 		if (maxCalleesPerCallSite < 0 || callees.size() <= maxCalleesPerCallSite) {
-			callees.stream()
-					.filter(m -> m.isConcrete())
-					.forEach(sCalledProcN -> {
+			callees.stream().filter(m -> m.isConcrete()).forEach(new Consumer<SootMethod>() {
+
+				@Override
+				public void accept(SootMethod sCalledProcN) {
 					// Early termination check
 					if (killFlag != null)
 						return;
 
-					// compute the call-flow function 这里的call-flow指的是passarg，从实参到形参的转变
+					// compute the call-flow function
 					FlowFunction<D> function = flowFunctions.getCallFlowFunction(n, sCalledProcN);
 					Set<D> res = computeCallFlowFunction(function, d1, d2);
 
@@ -325,7 +307,6 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 							// for each callee's start point(s)
 							for (N sP : startPointsOf) {
 								// create initial self-loop
-								//从这个方法的实际开始点开始循环，这个代表着进入一个方法进行分析，有点类似于我们项目中的intraprocedural 过程内分析
 								propagate(d3, sP, d3, n, false); // line 15
 							}
 
@@ -340,19 +321,13 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 					}
 				}
 
-			);
+			});
 		}
 
-		// line 17-19 of Naeem/Lhotak/Rodriguez 程序间的分析主要依靠call-to-return
-    //为什么没有入口点，所有的都只有startpoint和入口d1出口d2
+		// line 17-19 of Naeem/Lhotak/Rodriguez
 		// process intra-procedural flows along call-to-return flow functions
-    //在这里考虑利用summary，summary用的是n
 		for (N returnSiteN : returnSiteNs) {
 			FlowFunction<D> callToReturnFlowFunction = flowFunctions.getCallToReturnFlowFunction(n, returnSiteN);
-			//这里对应的是第17行内容 d2：The incoming taint to propagate over the given statement
-			//res为d2传播的变量
-			//$stack11 = virtualinvoke $stack10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(password)
-			//如上句所述，传入污染变量passowrd，在计算后添加stack11，添加处为taintwrapper rule计算处
 			Set<D> res = computeCallToReturnFlowFunction(callToReturnFlowFunction, d1, d2);
 			if (res != null && !res.isEmpty()) {
 				for (D d3 : res) {
@@ -624,7 +599,6 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 
 	/**
 	 * Propagates the flow further down the exploded super graph.
-	 * 在分解的超级图上进一步向下传播流。
 	 * 
 	 * @param sourceVal          the source value of the propagated summary edge
 	 * @param target             the target statement
@@ -641,37 +615,20 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 	protected void propagate(D sourceVal, N target, D targetVal,
 			/* deliberately exposed to clients */ N relatedCallSite,
 			/* deliberately exposed to clients */ boolean isUnbalancedReturn) {
-//		System.out.println("test---propagate()的一次调用开始----------------------------------------------------");
 		// Let the memory manager run
-		//让内存管理器运行
 		if (memoryManager != null) {
-//			System.out.println("memoryManager != null");
 			sourceVal = memoryManager.handleMemoryObject(sourceVal);
-//			System.out.println("test---sourceVal: " + sourceVal);
 			targetVal = memoryManager.handleMemoryObject(targetVal);
-//			System.out.println("test---targetVal: " + targetVal);
 			if (targetVal == null)
 				return;
 		}
 
 		// Check the path length
-		//检查路径长度
 		if (maxAbstractionPathLength >= 0 && targetVal.getPathLength() > maxAbstractionPathLength)
 			return;
-//		System.out.println("test---maxAbstractionPathLength: " + maxAbstractionPathLength);//100
-//		System.out.println("test---targetVal.getPathLength(): " + targetVal.getPathLength());//0~12
 
-		// System.out.println("=================\n"+"test-sourceVal: " + sourceVal + "\ntest-target: " + target+"\ntest-targetVal: " + targetVal);
 		final PathEdge<N, D> edge = new PathEdge<N, D>(sourceVal, target, targetVal);
-//		Body activeBody = icfg.getMethodOf(target).getActiveBody();
-//		System.out.println("test---edge: " + edge);
-		//记录跳转函数（jump function）。 源语句（source statement）是隐式的。
 		final D existingVal = addFunction(edge);
-//		System.out.println("test---existingVal: " + existingVal);
-		//null
-		//token(java.lang.String) * <+length> | >>
-		//password(java.lang.String) * <+length> | >>
-		//$stack8(com.huawei.model.ModelOne) <com.huawei.model.ModelOne: java.lang.String password> * <+length> | >>
 		if (existingVal != null) {
 			if (existingVal != targetVal) {
 				// Check whether we need to retain this abstraction
@@ -701,7 +658,6 @@ public class IFDSSolver<N, D extends FastSolverLinkedNode<D, N>, I extends BiDiI
 
 	/**
 	 * Records a jump function. The source statement is implicit.
-	 * 记录跳转函数。 源语句是隐式的。
 	 * 
 	 * @see PathEdge
 	 */

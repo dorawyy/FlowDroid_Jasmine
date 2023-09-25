@@ -5,7 +5,6 @@ import java.util.Set;
 
 /**
  * Peer group for synchronizing multiple IFDS solvers
- * 用于同步多个 IFDS 求解器的对等组
  * 
  * @author Steven Arzt
  *

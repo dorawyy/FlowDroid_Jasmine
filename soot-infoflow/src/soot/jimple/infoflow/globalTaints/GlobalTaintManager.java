@@ -19,8 +19,6 @@ import soot.util.queue.QueueReader;
  * Manager class for storing and processing global taints, i.e., taints that
  * shall be valid regardless of context and statement. This class is useful for
  * handling field-based taints outside of IFDS.
- * 用于存储和处理全局污点的管理器类，即无论上下文和语句如何都应有效的污点。
- * 此类可用于处理 IFDS 之外的基于字段的污点。
  * 
  * @author Steven Arzt
  *

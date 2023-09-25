@@ -439,7 +439,8 @@ public class BackwardsInfoflowProblem extends AbstractInfoflowProblem {
 
 				final Value[] paramLocals = new Value[dest.getParameterCount()];
 				for (int i = 0; i < dest.getParameterCount(); i++)
-					paramLocals[i] = dest.retrieveActiveBody().getParameterLocal(i);
+					paramLocals[i] = dest.retrieveActiveBody().getParameterLocal(i); // JASMINE change
+					// paramLocals[i] = dest.getActiveBody().getParameterLocal(i);
 
 				final boolean isSource = manager.getSourceSinkManager() != null
 						? manager.getSourceSinkManager().getSourceInfo((Stmt) src, manager) != null
@@ -450,7 +451,8 @@ public class BackwardsInfoflowProblem extends AbstractInfoflowProblem {
 
 				// This is not cached by Soot, so accesses are more expensive
 				// than one might think
-				final Local thisLocal = dest.isStatic() ? null : dest.retrieveActiveBody().getThisLocal();
+				final Local thisLocal = dest.isStatic() ? null : dest.retrieveActiveBody().getThisLocal(); // JASMINE change
+				// final Local thisLocal = dest.isStatic() ? null : dest.getActiveBody().getThisLocal();
 
 				// Android executor methods are handled specially.
 				// getSubSignature()

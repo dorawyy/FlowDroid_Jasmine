@@ -36,7 +36,7 @@ public abstract class ConcurrentAbstractionPathBuilder extends AbstractAbstracti
 	public void computeTaintPaths(final Set<AbstractionAtSink> res) {
 		if (res == null || res.isEmpty())
 			return;
-//在这个方法中构建路径
+
 		logger.info("Obtainted {} connections between sources and sinks", res.size());
 
 		// Notify the listeners that the solver has been started

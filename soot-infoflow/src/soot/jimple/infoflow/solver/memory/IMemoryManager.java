@@ -12,11 +12,8 @@ public interface IMemoryManager<D, N> {
 	/**
 	 * Tells the memory manager to handle the given object. Implementations are
 	 * free to replace the incoming object with a different reference.
-	 * 告诉内存管理器处理给定的对象。 实现可以自由地用不同的引用替换传入的对象。
 	 * @param obj The object to handle
-	 *            要处理的对象
 	 * @return The new reference that shall be used instead of the old one
-	 * 应使用的新引用而不是旧引用
 	 */
 	public D handleMemoryObject(D obj);
 	

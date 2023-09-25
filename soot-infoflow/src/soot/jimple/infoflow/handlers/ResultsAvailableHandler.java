@@ -21,7 +21,6 @@ public interface ResultsAvailableHandler {
 
 	/**
 	 * Callback that is invoked when information flow results are available
-	 * 当信息流结果可用时调用的回调
 	 * @param cfg The program graph
 	 * @param results The results that were computed
 	 */

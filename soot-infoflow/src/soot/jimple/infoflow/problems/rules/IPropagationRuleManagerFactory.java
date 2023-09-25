@@ -6,7 +6,6 @@ import soot.jimple.infoflow.problems.TaintPropagationResults;
 
 /**
  * Interface for constructing propagation rule managers
- * 用于构建传播规则管理器的接口
  * 
  * @author Steven Arzt
  *

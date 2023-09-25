@@ -3,7 +3,6 @@ package soot.jimple.infoflow.sourcesSinks.manager;
 /**
  * Interface for source/sink managers that support calculating data flows with
  * one source at a time
- * source/sink管理器接口，支持一次使用一个source计算数据流
  * 
  * @author Steven Arzt
  *
@@ -29,7 +28,6 @@ public interface IOneSourceAtATimeManager {
 	/**
 	 * Resets the iterator. This means that the source/sink manager starts again
 	 * with the first source.
-	 * 重置迭代器。这意味着source/sink管理器再次从第一个source开始。
 	 */
 	public void resetCurrentSource();
 	

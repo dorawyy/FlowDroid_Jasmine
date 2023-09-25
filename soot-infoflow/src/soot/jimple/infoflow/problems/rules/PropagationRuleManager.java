@@ -141,7 +141,6 @@ public class PropagationRuleManager {
 			ByReferenceBoolean killAll) {
 		Set<Abstraction> res = null;
 		for (ITaintPropagationRule rule : rules) {
-			//将所有的规则返回的变量都加入，但是如果存在kill的情况，就不考虑
 			Collection<Abstraction> ruleOut = rule.propagateCallFlow(d1, source, stmt, dest, killAll);
 			if (killAll.value)
 				return null;

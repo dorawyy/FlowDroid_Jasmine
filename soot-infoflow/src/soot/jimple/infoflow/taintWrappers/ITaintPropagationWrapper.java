@@ -22,8 +22,6 @@ import soot.jimple.infoflow.data.Abstraction;
  * be analyzed directly. Analysis results are instead taken from an external model
  * containing method summaries (which improves performance and helps if the sources
  * are not available).
- * 该接口声明了定义不应直接分析的类和方法的方法。
- * 分析结果取自包含方法摘要的外部模型（这可以提高性能并在源不可用时提供帮助）。
  * 
  * Unless stated otherwise, all methods in this interface must be implemented
  * thread safe.
@@ -106,9 +104,7 @@ public interface ITaintPropagationWrapper {
 	 * Gets the number of times in which the taint wrapper was able to
 	 * exclusively model a method call. This is equal to the number of times
 	 * isExclusive() returned true.
-	 * 获取污染包装器能够以独占方式对方法调用建模的次数。这等于isExclusive（）返回true的次数。
 	 * @return The number of method model requests that succeeded
-	 * 成功的方法模型请求数
 	 */
 	public int getWrapperHits();
 	
@@ -116,9 +112,7 @@ public interface ITaintPropagationWrapper {
 	 * Gets the number of times in which the taint wrapper was NOT able to
 	 * exclusively model a method call. This is equal to the number of times
 	 * isExclusive() returned false.
-	 * 获取污染包装器无法以独占方式对方法调用建模的次数。这等于isExclusive（）返回false的次数。
 	 * @return The number of method model requests that failed
-	 * 失败的方法模型请求数
 	 */
 	public int getWrapperMisses();
 

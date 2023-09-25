@@ -14,7 +14,6 @@ public interface IInfoflowSolver {
 
 	/**
 	 * Schedules the given edge for processing in the solver
-	 * 安排给定的边在求解器中进行处理
 	 * 
 	 * @param edge The edge to schedule for processing
 	 * @return True if the edge was scheduled, otherwise (e.g., if the edge has
@@ -38,7 +37,6 @@ public interface IInfoflowSolver {
 	/**
 	 * Cleans up some unused memory. Results will still be available afterwards, but
 	 * no intermediate computation values.
-	 * 清除一些未使用的内存。结果将在以后仍然可用，但没有中间计算值。
 	 */
 	public void cleanup();
 
@@ -76,16 +74,13 @@ public interface IInfoflowSolver {
 
 	/**
 	 * Gets the number of edges propagated by the solver
-	 * 获取解算器传播的边数
 	 * 
 	 * @return The number of edges propagated by the solver
-	 * 解算器传播的边数
 	 */
 	public long getPropagationCount();
 
 	/**
 	 * Solves the data flow problem
-	 * 解决数据流问题
 	 */
 	public void solve();
 
@@ -93,7 +88,6 @@ public interface IInfoflowSolver {
 
 	/**
 	 * Gets the IFDS problem solved by this solver
-	 * 获取此求解器解决的 IFDS 问题
 	 * 
 	 * @return The IFDS problem solved by this solver
 	 */
@@ -138,7 +132,6 @@ public interface IInfoflowSolver {
 
 	/**
 	 * Notifies the solver that no further edges will be scheduled
-	 * 通知解算器不再计划其他边
 	 */
 	public void terminate();
 

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Central configuration class for FlowDroid
- * 这个类包括了cg算法的构造方式，
+ * 
  * @author Steven Arzt
  *
  */
@@ -67,7 +67,6 @@ public class InfoflowConfiguration {
 	/**
 	 * Enumeration containing the callgraph algorithms supported for the use with
 	 * the data flow tracker
-	 * 包含支持与数据流跟踪器一起使用的调用图算法的枚举
 	 */
 	public static enum CallgraphAlgorithm {
 		AutomaticSelection, CHA, VTA, RTA, SPARK, GEOM, OnDemand
@@ -531,7 +530,6 @@ public class InfoflowConfiguration {
 	/**
 	 * The configuration that defines how FlowDroid shall handle between sources and
 	 * sinks
-	 * 定义FlowDroid应如何处理source和sink之间的配置
 	 * 
 	 * @author Steven Arzt
 	 *
@@ -539,9 +537,9 @@ public class InfoflowConfiguration {
 	public static class PathConfiguration {
 
 		private boolean sequentialPathProcessing = false;
-		//这里修改为精确流,之前为nopaths
+		// JASMINE: change to "Precise", used to "NoPaths"
 		private PathReconstructionMode pathReconstructionMode = PathReconstructionMode.Precise;
-//		private PathReconstructionMode pathReconstructionMode = PathReconstructionMode.NoPaths;
+		// private PathReconstructionMode pathReconstructionMode = PathReconstructionMode.NoPaths;
 		private PathBuildingAlgorithm pathBuildingAlgorithm = PathBuildingAlgorithm.ContextSensitive;
 		private int maxCallStackSize = 30;
 		private int maxPathLength = 75;
@@ -706,14 +704,9 @@ public class InfoflowConfiguration {
 		 * incremental path reconstruction is not used, the timeout is applied to the
 		 * complete path reconstruction phase, because it does not overlap with the data
 		 * flow analysis phase in this case.
-		 * 获取路径重建将中止的超时时间（以秒为单位）。
-		 * 此超时在数据流分析完成后应用。
-		 * 如果使用增量路径重建，则在数据流分析完成后应用增量路径重建进行剩余路径重建。
-		 * 如果不使用增量路径重建，则超时将应用于完整路径重建阶段，因为在这种情况下，它与数据流分析阶段不重叠。
 		 * 
 		 * @return The timeout in seconds after which the path reconstruction shall be
 		 *         aborted
-		 *         以秒为单位的超时，在此超时之后路径重建将中止
 		 */
 		public long getPathReconstructionTimeout() {
 			return this.pathReconstructionTimeout;
@@ -1006,14 +999,9 @@ public class InfoflowConfiguration {
 		 * neighbors beyond the given count. This greatly reduces the memory
 		 * requirements of the analysis. On the other hand, if data is tainted from two
 		 * different sources, only some of them will be reported.
-		 * 获取每个连接点应记录的最大抽象数。
-		 * 换句话说，启用此选项将禁用超出给定计数的邻居的记录。
-		 * 这大大降低了分析的内存需求。
-		 * 另一方面，如果数据受到两个不同来源的污染，则只会报告其中的一部分。
 		 * 
 		 * @return The maximum number of abstractions per join point, or -1 to record an
 		 *         arbitrary number of join point abstractions
-		 *         每个连接点的最大抽象数，或 -1 以记录任意数量的连接点抽象
 		 */
 		public int getMaxJoinPointAbstractions() {
 			return this.maxJoinPointAbstractions;
@@ -1548,11 +1536,9 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets whether a flow sensitive aliasing algorithm shall be used
-	 * 获取是否应使用流敏感混叠算法
 	 * 
 	 * @return True if a flow sensitive aliasing algorithm shall be used, otherwise
 	 *         false
-	 *         如果应使用流敏感混叠算法则为真，否则为假
 	 */
 	public boolean getFlowSensitiveAliasing() {
 		return flowSensitiveAliasing;
@@ -1570,11 +1556,9 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets whether the solver shall track taints of thrown exception objects
-	 * 获取求解器是否应跟踪抛出的异常对象的污点
 	 * 
 	 * @return True if the solver shall track taints of thrown exception objects,
 	 *         otherwise false
-	 *         如果求解器应跟踪抛出的异常对象的污点，则为真，否则为假
 	 */
 	public boolean getEnableExceptionTracking() {
 		return enableExceptions;
@@ -1620,10 +1604,8 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets the callgraph algorithm to be used by the data flow tracker
-	 * 获取数据流跟踪器要使用的调用图算法
 	 * 
 	 * @return The callgraph algorithm to be used by the data flow tracker
-	 * 数据流跟踪器要使用的调用图算法
 	 */
 	public CallgraphAlgorithm getCallgraphAlgorithm() {
 		return callgraphAlgorithm;
@@ -1740,7 +1722,6 @@ public class InfoflowConfiguration {
 	/**
 	 * Gets whether FlowDroid shall write the Jimple files to disk after the data
 	 * flow analysis
-	 * 获取FlowDroid是否应在数据流分析后将Jimple文件写入磁盘
 	 * 
 	 * @return True if the Jimple files shall be written to disk after the data flow
 	 *         analysis, otherwise false
@@ -1802,10 +1783,8 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets whether reflective method calls shall be supported
-	 * 获取是否支持反射方法调用
 	 * 
 	 * @return True if reflective method calls shall be supported, otherwise false
-	 * 如果应支持反射方法调用则为真，否则为假
 	 */
 	public boolean getEnableReflection() {
 		return this.enableReflection;
@@ -1865,10 +1844,8 @@ public class InfoflowConfiguration {
 	/**
 	 * Gets whether the taint analysis is enabled. If it is disabled, FlowDroid will
 	 * initialize the Soot instance and then return immediately.
-	 * 获取是否启用污点分析。 如果禁用，FlowDroid 将初始化 Soot 实例，然后立即返回。
 	 * 
 	 * @return True if data flow tracking shall be performed, false otherwise
-	 * 如果应执行数据流跟踪，则为真，否则为假
 	 */
 	public boolean isTaintAnalysisEnabled() {
 		return taintAnalysisEnabled;
@@ -1888,11 +1865,9 @@ public class InfoflowConfiguration {
 	/**
 	 * Gets whether the data flow results shall be reported incrementally instead of
 	 * being only available after the full data flow analysis has been completed.
-	 * 获取是否应增量报告数据流结果，而不是仅在完成完整数据流分析后才可用。
 	 * 
 	 * @return True if incremental data flow results shall be available, otherwise
 	 *         false
-	 *         如果增量数据流结果可用，则为True，否则为false
 	 */
 	public boolean getIncrementalResultReporting() {
 		return this.incrementalResultReporting;
@@ -1912,12 +1887,9 @@ public class InfoflowConfiguration {
 	/**
 	 * Gets the timeout in seconds after which the taint analysis shall be aborted.
 	 * This timeout only applies to the taint analysis itself, not to the path
-	 * reconstruction that happens afterwards
-	 * 获取以秒为单位的超时，在此之后污点分析应中止。
-	 * 此超时仅适用于污点分析本身，不适用于之后发生的路径重建。
+	 * reconstruction that happens afterwards.
 	 * 
 	 * @return The timeout in seconds after which the analysis shall be aborted
-	 * 中止分析后的超时时间（以秒为单位）
 	 */
 	public long getDataFlowTimeout() {
 		return this.dataFlowTimeout;
@@ -1939,10 +1911,8 @@ public class InfoflowConfiguration {
 	 * Gets the threshold at which the data flow analysis shall be terminated. If
 	 * the JVM consumes more than this fraction of the heap, no more data flow edges
 	 * are propagated, and the results obtained so far are returned.
-	 * 获取终止数据流分析的阈值。如果 JVM 消耗的堆超过这一部分，则不会传播更多数据流边缘，并返回到目前为止获得的结果。
 	 * 
 	 * @return The threshold at which to abort the workers
-	 * 中止工人的阈值
 	 */
 	public double getMemoryThreshold() {
 		return memoryThreshold;
@@ -1962,12 +1932,9 @@ public class InfoflowConfiguration {
 	/**
 	 * Gets whether one source shall be analyzed at a time instead of all sources
 	 * together
-	 * 获取是否应一次分析一个来源而不是所有来源
 	 * 
 	 * @return True if the analysis shall be run with one analysis at a time, false
 	 *         if the analysis shall be run with all sources together
-	 *         如果分析应一次进行一个分析，则为真，如果分析应与所有source一起运行，则为假
-	 *
 	 */
 	public boolean getOneSourceAtATime() {
 		return this.oneSourceAtATime;
@@ -1987,10 +1954,8 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets the configuration for dealing with the paths between source and sinks
-	 * 获取处理 source 和 sinks 之间路径的配置
 	 * 
 	 * @return The configuration for dealing with the paths between source and sinks
-	 * 处理source和sink之间的路径的配置
 	 */
 	public PathConfiguration getPathConfiguration() {
 		return pathConfiguration;
@@ -2007,10 +1972,8 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Gets the configuration for the core IFDS data flow solver
-	 * 获取核心 IFDS 数据流求解器的配置
 	 * 
 	 * @return The configuration for the core IFDS data flow solver
-	 * 核心IFDS数据流求解器的配置
 	 */
 	public SolverConfiguration getSolverConfiguration() {
 		return solverConfiguration;
@@ -2028,42 +1991,40 @@ public class InfoflowConfiguration {
 
 	/**
 	 * Prints a summary of this data flow configuration
-	 * 打印此数据流配置的摘要
 	 */
 	public void printSummary() {
 		if (staticFieldTrackingMode == StaticFieldTrackingMode.None)
-			logger.warn("Static field tracking is disabled, results may be incomplete");//静态场跟踪被禁用，结果可能不完整
+			logger.warn("Static field tracking is disabled, results may be incomplete");
 		if (!flowSensitiveAliasing)
-			logger.warn("Using flow-insensitive alias tracking, results may be imprecise");//使用对流不敏感的别名跟踪，结果可能不精确
+			logger.warn("Using flow-insensitive alias tracking, results may be imprecise");
 		switch (implicitFlowMode) {
 		case AllImplicitFlows:
-			logger.info("Implicit flow tracking is enabled");//隐式流量跟踪已启用
+			logger.info("Implicit flow tracking is enabled");
 			break;
 		case ArrayAccesses:
-			logger.info("Tracking of implicit array accesses is enabled");//启用对隐式数组访问的跟踪
+			logger.info("Tracking of implicit array accesses is enabled");
 			break;
 		case NoImplicitFlows:
-			logger.info("Implicit flow tracking is NOT enabled");//未启用隐式流量跟踪
+			logger.info("Implicit flow tracking is NOT enabled");
 			break;
 		}
 		if (enableExceptions)
-			logger.info("Exceptional flow tracking is enabled");//启用异常流量跟踪
+			logger.info("Exceptional flow tracking is enabled");
 		else
-			logger.info("Exceptional flow tracking is NOT enabled");//未启用异常流量跟踪
-		//以最大访问路径长度 {} 运行
+			logger.info("Exceptional flow tracking is NOT enabled");
 		logger.info("Running with a maximum access path length of {}", accessPathConfiguration.getAccessPathLength());
 		if (pathAgnosticResults)
-			logger.info("Using path-agnostic result collection");//使用与路径无关的结果收集
+			logger.info("Using path-agnostic result collection");
 		else
-			logger.info("Using path-sensitive result collection");//使用路径敏感的结果收集
+			logger.info("Using path-sensitive result collection");
 		if (accessPathConfiguration.useRecursiveAccessPaths)
-			logger.info("Recursive access path shortening is enabled");//启用递归访问路径缩短
+			logger.info("Recursive access path shortening is enabled");
 		else
-			logger.info("Recursive access path shortening is NOT enabled");//递归访问路径缩短未启用
-		logger.info("Taint analysis enabled: " + taintAnalysisEnabled);//启用污点分析：
+			logger.info("Recursive access path shortening is NOT enabled");
+		logger.info("Taint analysis enabled: " + taintAnalysisEnabled);
 		if (oneSourceAtATime)
-			logger.info("Running with one source at a time");//一次使用一个source运行
-		logger.info("Using alias algorithm " + aliasingAlgorithm);//使用别名算法
+			logger.info("Running with one source at a time");
+		logger.info("Using alias algorithm " + aliasingAlgorithm);
 	}
 
 	@Override

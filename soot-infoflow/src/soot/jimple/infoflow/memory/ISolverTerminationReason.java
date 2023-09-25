@@ -3,7 +3,6 @@ package soot.jimple.infoflow.memory;
 /**
  * Common interface for all classes that describe why a solver was forcefully
  * terminated
- * 描述为什么强制终止解算器的所有类的公共接口
  * 
  * @author Steven Arzt
  *

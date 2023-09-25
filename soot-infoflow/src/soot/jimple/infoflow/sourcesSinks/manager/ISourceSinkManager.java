@@ -22,7 +22,6 @@ public interface ISourceSinkManager {
 	/**
 	 * Initialization method that is called after the Soot instance has been
 	 * created and before the actual data flow tracking is started.
-	 * 在创建 Soot 实例之后和开始实际数据流跟踪之前调用的初始化方法。
 	 */
 	public void initialize();
 

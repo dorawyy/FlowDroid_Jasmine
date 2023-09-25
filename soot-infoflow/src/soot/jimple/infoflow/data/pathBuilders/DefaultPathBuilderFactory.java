@@ -20,11 +20,9 @@ public class DefaultPathBuilderFactory implements IPathBuilderFactory {
 
 	/**
 	 * Creates a new instance of the {@link DefaultPathBuilderFactory} class
-	 * 创建 {@link DefaultPathBuilderFactory} 类的新实例
 	 * 
 	 * @param config
 	 *            The configuration for reconstructing data flow paths
-	 *            重构数据流路径的配置
 	 */
 	public DefaultPathBuilderFactory(PathConfiguration config) {
 		this.pathConfiguration = config;

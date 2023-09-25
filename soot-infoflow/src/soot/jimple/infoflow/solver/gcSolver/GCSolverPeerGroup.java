@@ -4,7 +4,6 @@ import soot.jimple.infoflow.solver.SolverPeerGroup;
 
 /**
  * Specialized solver peer group for garbage-collecting solvers
- * 垃圾收集求解器的专业求解器对等组
  * 
  * @author Steven Arzt
  *

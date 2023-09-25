@@ -14,13 +14,11 @@ import soot.jimple.infoflow.util.TypeUtils;
 /**
  * Manager class for passing internal data flow objects to interface
  * implementors
- * 用于将内部数据流对象传递给接口实现者的管理器类
  * 
  * @author Steven Arzt
  *
  */
 public class InfoflowManager {
-	//这里是所有设置的需要注意的
 
 	private final InfoflowConfiguration config;
 	private IInfoflowSolver forwardSolver;
@@ -58,7 +56,6 @@ public class InfoflowManager {
 
 	/**
 	 * Sets the IFDS solver that propagates edges forward
-	 * 设置向前传播边的 IFDS 求解器
 	 * 
 	 * @param solver The IFDS solver that propagates edges forward
 	 */

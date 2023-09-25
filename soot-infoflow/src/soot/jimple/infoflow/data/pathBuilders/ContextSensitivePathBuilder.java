@@ -150,17 +150,15 @@ public class ContextSensitivePathBuilder extends ConcurrentAbstractionPathBuilde
 	/**
 	 * Checks whether the given abstraction is a source. If so, a result entry is
 	 * created.
-	 *这里是核心构建result的
+	 * 
 	 * @param abs  The abstraction to check
 	 * @param scap The path leading up to the current abstraction
 	 * @return True if the current abstraction is a source, otherwise false
 	 */
 	protected boolean checkForSource(Abstraction abs, SourceContextAndPath scap) {
 		if (abs.getPredecessor() != null)
-		{
-			//如果这里没有前驱节点，就认为这里是source节点
 			return false;
-		}
+
 		// If we have no predecessors, this must be a source
 		assert abs.getSourceContext() != null;
 
@@ -173,13 +171,13 @@ public class ContextSensitivePathBuilder extends ConcurrentAbstractionPathBuilde
 
 		// Register the source that we have found
 		SourceContext sourceContext = abs.getSourceContext();
-		List<Stmt> list = new ArrayList();
+		List<Stmt> list = new ArrayList<>();
 		for(Abstraction item : scap.getAbstractionPath()){
 			list.add(item.getCurrentStmt());
 		}
-		Pair<ResultSourceInfo, ResultSinkInfo> newResult = results.addResultPath(scap.getDefinition(), scap.getAccessPath(),
+		Pair<ResultSourceInfo, ResultSinkInfo> newResult = results.addResult(scap.getDefinition(), scap.getAccessPath(),
 				scap.getStmt(), sourceContext.getDefinition(), sourceContext.getAccessPath(), sourceContext.getStmt(),
-				sourceContext.getUserData(), scap.getAbstractionPath(), list);
+				sourceContext.getUserData(), scap.getAbstractionPath());
 
 		// Notify our handlers
 		if (resultAvailableHandlers != null)

@@ -39,7 +39,7 @@ public class WrapperPropagationRule extends AbstractTaintPropagationRule {
 
 	/**
 	 * Computes the taints produced by a taint wrapper object
-	 * 传进来的source变量可以污染哪些变量 d1事故source是所在的方法中的初始变量
+	 * 
 	 * @param d1     The context (abstraction at the method's start node)
 	 * @param iStmt  The call statement the taint wrapper shall check for well-
 	 *               known methods that introduce black-box taint propagation
@@ -60,13 +60,13 @@ public class WrapperPropagationRule extends AbstractTaintPropagationRule {
 		if (aliasing != null && !source.getAccessPath().isStaticFieldRef() && !source.getAccessPath().isEmpty()) {
 			boolean found = false;
 
-			// The base object must be tainted 如果调用是初始化方法的话，判断两个变量是否可能相同
+			// The base object must be tainted
 			if (iStmt.getInvokeExpr() instanceof InstanceInvokeExpr) {
 				InstanceInvokeExpr iiExpr = (InstanceInvokeExpr) iStmt.getInvokeExpr();
 				found = aliasing.mayAlias(iiExpr.getBase(), source.getAccessPath().getPlainValue());
 			}
 
-			// or one of the parameters must be tainted 判断两个可能是同类型的吗
+			// or one of the parameters must be tainted
 			if (!found)
 				for (int paramIdx = 0; paramIdx < iStmt.getInvokeExpr().getArgCount(); paramIdx++)
 					if (aliasing.mayAlias(source.getAccessPath().getPlainValue(),
@@ -90,10 +90,12 @@ public class WrapperPropagationRule extends AbstractTaintPropagationRule {
 				return null;
 		}
 
+		// JASMINE change 
 		if(iStmt.toString().contains("$stack18 = virtualinvoke $stack17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(password)"))
 		{
-			System.out.println("这里是为了测试开启pricese与nopath");
+			System.out.println("这里是为了测试开启precise与nopath");
 		}
+		
 		Set<Abstraction> res = getManager().getTaintWrapper().getTaintsForMethod(iStmt, d1, source);
 		if (res != null) {
 			Set<Abstraction> resWithAliases = new HashSet<>(res);
@@ -123,7 +125,6 @@ public class WrapperPropagationRule extends AbstractTaintPropagationRule {
 		// backwards as there might be aliases for the base object
 		// Note that we don't only need to check for heap writes such as a.x = y,
 		// but also for base object taints ("a" in this case).
-		//这里的意思是如果a.x被污染，我们也需要找到基础object x的别名，将其加入分析
 		final AccessPath val = abs.getAccessPath();
 		boolean isBasicString = TypeUtils.isStringType(val.getBaseType()) && !val.getCanHaveImmutableAliases()
 				&& !getAliasing().isStringConstructorCall(iStmt);
@@ -149,7 +150,6 @@ public class WrapperPropagationRule extends AbstractTaintPropagationRule {
 	public Collection<Abstraction> propagateCallToReturnFlow(Abstraction d1, Abstraction source, Stmt stmt,
 			ByReferenceBoolean killSource, ByReferenceBoolean killAll) {
 		// Compute the taint wrapper taints
-		//taint wrapper用来测试是否需要加入源污染点与删除其他所有污染点
 		Collection<Abstraction> wrapperTaints = computeWrapperTaints(d1, stmt, source);
 		if (wrapperTaints != null) {
 			// If the taint wrapper generated an abstraction for

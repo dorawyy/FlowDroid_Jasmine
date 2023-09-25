@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  * Copyright (c) 2012 Secure Software Engineering Group at EC SPRIDE.
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +11,6 @@
  ******************************************************************************/
 package soot.jimple.infoflow;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;

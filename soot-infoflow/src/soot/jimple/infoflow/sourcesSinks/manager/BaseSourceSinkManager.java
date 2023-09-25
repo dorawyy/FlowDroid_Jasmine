@@ -591,11 +591,13 @@ public abstract class BaseSourceSinkManager implements ISourceSinkManager, IOneS
 			sourceFields = new HashMap<>();
 			sourceStatements = new HashMap<>();
 			for (Pair<String, ISourceSinkDefinition> entry : sourceDefs) {
+				// JASMINE changes 
 				String keySource = entry.getO1();
 				if(keySource.contains("getPassword"))
 				{
 					System.out.println("test here");
 				}
+				
 				ISourceSinkDefinition sourceSinkDef = entry.getO2();
 				if (sourceSinkDef instanceof MethodSourceSinkDefinition) {
 					SootMethodAndClass method = ((MethodSourceSinkDefinition) sourceSinkDef).getMethod();
@@ -612,8 +614,6 @@ public abstract class BaseSourceSinkManager implements ISourceSinkManager, IOneS
 						if (sootMethod != null)
 							sourceMethods.put(sootMethod, sourceSinkDef);
 					} else {
-						//这里的方法可能是幽灵方法
-
 						SootMethod sm = Scene.v().grabMethod(entry.getO1());
 						if (sm != null)
 							sourceMethods.put(sm, sourceSinkDef);

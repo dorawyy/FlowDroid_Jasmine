@@ -25,7 +25,6 @@ public class InterruptableExecutor extends CountingThreadPoolExecutor {
 	/**
 	 * Interrupts the executor. This will make the awaitCompletion() methods return
 	 * immediately and silently reject all new tasks.
-	 * 中断执行程序。 这将使 awaitCompletion() 方法立即返回并静默拒绝所有新任务。
 	 */
 	public void interrupt() {
 		// Make sure that no new tasks are spawned
@@ -71,7 +70,6 @@ public class InterruptableExecutor extends CountingThreadPoolExecutor {
 	@Override
 	public void awaitCompletion() throws InterruptedException {
 		// If we already know that we're done, there's no need to wait
-		//如果我们已经知道我们已经完成了，就不用再等了
 		if (terminated)
 			return;
 

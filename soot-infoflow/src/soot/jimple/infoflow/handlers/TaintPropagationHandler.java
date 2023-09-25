@@ -8,7 +8,6 @@ import soot.jimple.infoflow.data.Abstraction;
 
 /**
  * Handler interface for callbacks during taint propagation
- * 污点传播期间回调的处理程序接口
  * 
  * @author Steven Arzt
  * @author Malte Viering

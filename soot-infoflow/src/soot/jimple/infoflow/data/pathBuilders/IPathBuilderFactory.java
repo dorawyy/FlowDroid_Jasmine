@@ -5,7 +5,6 @@ import soot.jimple.infoflow.solver.executors.InterruptableExecutor;
 
 /**
  * Common interface for all path builder factories
- * 所有路径构建器工厂的通用接口
  * 
  * @author Steven Arzt
  */

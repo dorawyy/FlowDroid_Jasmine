@@ -5,7 +5,6 @@ import java.util.Set;
 /**
  * Common interface for all classes that support loading source and sink
  * definitions
- * 支持加载source和sink定义的所有类的通用接口
  * 
  * @author Steven Arzt
  *

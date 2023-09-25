@@ -13,7 +13,6 @@ import soot.jimple.infoflow.solver.IInfoflowSolver;
 /**
  * Generic interface for the different taint aliasing strategies supported by
  * FlowDroid
- * FlowDroid 支持的不同污点别名策略的通用接口
  * 
  * @author Steven Arzt
  */
@@ -65,9 +64,7 @@ public interface IAliasingStrategy {
 	
 	/**
 	 * Gets whether this aliasing strategy is flow sensitive
-	 * 获取此别名策略是否对流敏感
 	 * @return True if the aliasing strategy is flow sensitive, otherwise false
-	 * 如果混叠策略对流量敏感，则为真，否则为假
 	 */
 	public boolean isFlowSensitive();
 	
@@ -102,8 +99,6 @@ public interface IAliasingStrategy {
 	 * If this aliasing strategy uses an additional IFDS solver, it is returned
 	 * by this method. If this IFDS problem does not have a an additional solver,
 	 * null is returned.
-	 * 如果此别名策略使用额外的 IFDS 求解器，则此方法返回。
-	 * 如果此 IFDS 问题没有额外的求解器，则返回 null。
 	 * @return The additional IFDS solver used by this aliasing strategy if
 	 * applicable, null otherwise
 	 */

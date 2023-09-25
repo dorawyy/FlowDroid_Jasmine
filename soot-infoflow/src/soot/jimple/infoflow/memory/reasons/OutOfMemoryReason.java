@@ -4,7 +4,6 @@ import soot.jimple.infoflow.memory.ISolverTerminationReason;
 
 /**
  * Reason for terminating a data flow solver that has run out of memory
- * 终止内存不足的数据流解算器的原因
  * 
  * @author Steven Arzt
  *

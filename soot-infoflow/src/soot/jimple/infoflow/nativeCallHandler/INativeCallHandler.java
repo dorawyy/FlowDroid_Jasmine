@@ -20,7 +20,6 @@ import soot.jimple.infoflow.data.Abstraction;
 /**
  * The NativeCallHandler defines the taint propagation behavior for native code,
  * as we cannot analyze these methods
- * NativeCallHandler 定义了原生代码的污点传播行为，因为我们无法分析这些方法
  */
 public interface INativeCallHandler {
 
@@ -56,7 +55,6 @@ public interface INativeCallHandler {
 
 	/**
 	 * Tells the native call handler that it can free all resources it has allocated at initialization time
-	 * 告诉本机调用处理程序它可以释放初始化时分配的所有资源
 	 */
 	public void shutdown();
 	

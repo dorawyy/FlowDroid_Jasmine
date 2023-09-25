@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,27 +33,20 @@ import soot.util.MultiMap;
 
 /**
  * Class for collecting information flow results
- * 收集信息流结果的类
  * 
  * @author Steven Arzt
  */
 public class InfoflowResults {
 
-	public final static int TERMINATION_SUCCESS = 0;//0000
-	public final static int TERMINATION_DATA_FLOW_TIMEOUT = 1;//0001
-	public final static int TERMINATION_DATA_FLOW_OOM = 2;//0010
-	public final static int TERMINATION_PATH_RECONSTRUCTION_TIMEOUT = 4;//0100
-	public final static int TERMINATION_PATH_RECONSTRUCTION_OOM = 8;//1000
+	public final static int TERMINATION_SUCCESS = 0;
+	public final static int TERMINATION_DATA_FLOW_TIMEOUT = 1;
+	public final static int TERMINATION_DATA_FLOW_OOM = 2;
+	public final static int TERMINATION_PATH_RECONSTRUCTION_TIMEOUT = 4;
+	public final static int TERMINATION_PATH_RECONSTRUCTION_OOM = 8;
 
 	private static final Logger logger = LoggerFactory.getLogger(InfoflowResults.class);
 
 	private volatile MultiMap<ResultSinkInfo, ResultSourceInfo> results = null;
-
-	public ConcurrentHashMap<Pair<ResultSinkInfo, ResultSourceInfo>, List<List<Stmt>>> getMapContainsList() {
-		return mapContainsList;
-	}
-
-	private ConcurrentHashMap<Pair<ResultSinkInfo, ResultSourceInfo>, List<List<Stmt>>> mapContainsList = new ConcurrentHashMap();
 	private volatile InfoflowPerformanceData performanceData = null;
 	private volatile List<String> exceptions = null;
 	private int terminationState = TERMINATION_SUCCESS;
@@ -206,23 +198,6 @@ public class InfoflowResults {
 	}
 
 	/**
-	 * 新添的，为了保存中间路径
-	 *
-	 * @return
-	 */
-	public Pair<ResultSourceInfo, ResultSinkInfo> addResultPath(ISourceSinkDefinition sinkDefinition, AccessPath sink,
-			Stmt sinkStmt, ISourceSinkDefinition sourceDefinition, AccessPath source, Stmt sourceStmt, Object userData,
-			List<Abstraction> propagationPath, List<Stmt> list) {
-
-		Pair pair =  this.addResult(sinkDefinition, sink, sinkStmt, sourceDefinition, source, sourceStmt, userData,
-				propagationPath);
-		List<List<Stmt>> allPaths = mapContainsList.getOrDefault(pair, new ArrayList<>());
-		allPaths.add(list);
-		mapContainsList.put(pair, allPaths);
-		return pair;
-	}
-
-	/**
 	 * Adds the given data flow result to this data structure
 	 * 
 	 * @param res The data flow result to add
@@ -251,10 +226,8 @@ public class InfoflowResults {
 
 	/**
 	 * Adds all results from the given data structure to this one
-	 * 将给定数据结构的所有结果添加到此结构
 	 * 
 	 * @param results The data structure from which to copy the results
-	 *                从中复制结果的数据结构
 	 */
 	public void addAll(InfoflowResults results) {
 		// We must also accept empty result objects, because even though they do not
@@ -300,10 +273,8 @@ public class InfoflowResults {
 
 	/**
 	 * Gets all results in this object as a hash map from sinks to sets of sources.
-	 * 将此对象中的所有结果作为从sink到source集的哈希映射获取。
 	 * 
 	 * @return All results in this object as a hash map.
-	 * 此对象中的所有结果都作为哈希映射。
 	 */
 	public MultiMap<ResultSinkInfo, ResultSourceInfo> getResults() {
 		return this.results;
@@ -481,7 +452,6 @@ public class InfoflowResults {
 	 * Sets the termination state that describes whether the data flow analysis
 	 * terminated normally or whether one or more phases terminated prematurely due
 	 * to a timeout or an out-of-memory condition
-	 * 设置终止状态，该状态描述数据流分析是否正常终止，或者一个或多个阶段是否由于超时或内存不足而提前终止
 	 * 
 	 * @param terminationState The termination state
 	 */

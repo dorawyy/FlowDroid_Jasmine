@@ -29,7 +29,6 @@ public class FlowSensitiveAliasStrategy extends AbstractBulkAliasStrategy {
 	public void computeAliasTaints(final Abstraction d1, final Stmt src, final Value targetValue,
 			Set<Abstraction> taintSet, SootMethod method, Abstraction newAbs) {
 		// Start the backwards solver
-		//回头查找变量
 		Abstraction bwAbs = newAbs.deriveInactiveAbstraction(src);
 		for (Unit predUnit : manager.getICFG().getPredsOf(src))
 			bSolver.processEdge(new PathEdge<Unit, Abstraction>(d1, predUnit, bwAbs));

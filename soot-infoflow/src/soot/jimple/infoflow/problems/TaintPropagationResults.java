@@ -13,7 +13,6 @@ import soot.jimple.infoflow.util.SystemClassHandler;
 
 /**
  * Class for storing the results of the forward taint propagation
- * 用于存储前向污染传播结果的类
  * 
  * @author Steven Arzt
  *
@@ -63,7 +62,6 @@ public class TaintPropagationResults {
 			return true;
 
 		// Construct the abstraction at the sink
-		//将落在sink的变量放入result里
 		Abstraction abs = resultAbs.getAbstraction();
 		abs = abs.deriveNewAbstraction(abs.getAccessPath(), resultAbs.getSinkStmt());
 		abs.setCorrespondingCallSite(resultAbs.getSinkStmt());
@@ -76,7 +74,7 @@ public class TaintPropagationResults {
 				return true;
 		}
 
-		// Record the result 我感觉这个是clone了一个来比较
+		// Record the result
 		resultAbs = new AbstractionAtSink(resultAbs.getSinkDefinition(), abs, resultAbs.getSinkStmt());
 		Abstraction newAbs = this.results.putIfAbsentElseGet(resultAbs, resultAbs.getAbstraction());
 		if (newAbs != resultAbs.getAbstraction())
@@ -103,7 +101,6 @@ public class TaintPropagationResults {
 
 	/**
 	 * Gets all results collected in this data object
-	 * 获取在此数据对象中收集的所有结果
 	 * 
 	 * @return All data flow results collected in this object
 	 */

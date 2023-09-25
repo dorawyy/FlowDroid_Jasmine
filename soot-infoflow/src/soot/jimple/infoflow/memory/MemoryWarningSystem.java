@@ -175,25 +175,21 @@ public class MemoryWarningSystem {
 	 * Sets the one single global warning threshold for memory usage. If at least
 	 * the given fraction of the overall tenured pool is in use, the registered
 	 * hanlders will be invoked.
-	 * 为内存使用设置一个单一的全局警告阈值。 如果至少使用了整个终身池的给定部分，则将调用已注册的处理程序。
 	 * 
 	 * @param percentage
 	 */
 	public void setWarningThreshold(double percentage) {
 		if (percentage <= 0.0 || percentage > 1.0) {
-			throw new IllegalArgumentException("Percentage not in range");//百分比不在范围内
+			throw new IllegalArgumentException("Percentage not in range");
 		}
 		long maxMemory = tenuredGenPool.getUsage().getMax();
-//		System.out.println("maxMemory = " + maxMemory);//maxMemory = 2843738112
-//		System.out.println("percentage = " + percentage);//percentage = 0.9
 		long warningThreshold = (long) (maxMemory * percentage);
 		synchronized (warningSystems) {
 			// If element has changed, it needs to removed first
 			warningSystems.remove(this);
 			this.threshold = warningThreshold;
-			//System.out.println("threshold = " + threshold); //临界点  //threshold = 2559364300
 			logger.info(MessageFormat.format("Registered a memory warning system for {0} MiB",
-					(threshold / 1024D / 1024D)));//为 {0} MiB 注册了内存警告系统
+					(threshold / 1024D / 1024D)));
 			warningSystems.add(this);
 			MemoryUsage usage = tenuredGenPool.getUsage();
 			long threshold = warningSystems.iterator().next().threshold;

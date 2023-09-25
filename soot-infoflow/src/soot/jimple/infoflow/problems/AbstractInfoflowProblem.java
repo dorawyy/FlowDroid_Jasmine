@@ -42,9 +42,6 @@ import soot.jimple.toolkits.ide.icfg.BiDiInterproceduralCFG;
  * abstract super class which - concentrates functionality used by
  * InfoflowProblem and BackwardsInfoflowProblem - contains helper functions
  * which should not pollute the naturally large InfofflowProblems
- * 抽象超类
- * - 集中了 InfoflowProblem 和 BackwardsInfoflowProblem 使用的功能
- * - 包含不应污染自然大的 InfoflowProblem 的辅助函数
  *
  */
 public abstract class AbstractInfoflowProblem
@@ -82,7 +79,6 @@ public abstract class AbstractInfoflowProblem
 	/**
 	 * we need this option as we start directly at the sources, but need to go
 	 * backward in the call stack
-	 * 我们需要这个选项，因为我们直接从source开始，但需要在调用堆栈中向后
 	 */
 	@Override
 	public boolean followReturnsPastSeeds() {
@@ -132,7 +128,6 @@ public abstract class AbstractInfoflowProblem
 	/**
 	 * performance improvement: since we start directly at the sources, we do not
 	 * need to generate additional taints unconditionally
-	 * 性能改进：由于我们直接从source开始，我们不需要无条件地生成额外的污点
 	 */
 	@Override
 	public boolean autoAddZero() {
@@ -187,12 +182,9 @@ public abstract class AbstractInfoflowProblem
 
 	/**
 	 * Adds the given initial seeds to the information flow problem
-	 * 将给定的初始种子添加到信息流问题中
 	 * 
 	 * @param unit  The unit to be considered as a seed
-	 *              作为种子的unit
 	 * @param seeds The abstractions with which to start at the given seed
-	 *              从给定种子开始的抽象
 	 */
 	public void addInitialSeeds(Unit unit, Set<Abstraction> seeds) {
 		if (this.initialSeeds.containsKey(unit))
@@ -203,11 +195,9 @@ public abstract class AbstractInfoflowProblem
 
 	/**
 	 * Gets whether this information flow problem has initial seeds
-	 * 获取此信息流问题是否具有初始种子
 	 * 
 	 * @return True if this information flow problem has initial seeds, otherwise
 	 *         false
-	 *         如果此信息流问题具有初始种子，则为True，否则为false
 	 */
 	public boolean hasInitialSeeds() {
 		return !this.initialSeeds.isEmpty();
@@ -216,11 +206,9 @@ public abstract class AbstractInfoflowProblem
 	/**
 	 * Gets the initial seeds with which this information flow problem has been
 	 * configured
-	 * 获取配置此信息流问题的初始种子
 	 * 
 	 * @return The initial seeds with which this information flow problem has been
 	 *         configured.
-	 *         配置此信息流问题的初始种子
 	 */
 	public Map<Unit, Set<Abstraction>> getInitialSeeds() {
 		return this.initialSeeds;

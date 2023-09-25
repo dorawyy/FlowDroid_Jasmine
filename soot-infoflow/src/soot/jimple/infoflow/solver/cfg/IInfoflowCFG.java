@@ -219,7 +219,6 @@ public interface IInfoflowCFG extends BiDiInterproceduralCFG<Unit, SootMethod> {
 	/**
 	 * Clears all caches and temporary data from memory. This method has no effect
 	 * on the functional behavior of the class.
-	 * 从内存中删除别名分析从内存中删除所有缓存和临时数据。此方法对类的函数行为没有影响。
 	 */
 	public void purge();
 

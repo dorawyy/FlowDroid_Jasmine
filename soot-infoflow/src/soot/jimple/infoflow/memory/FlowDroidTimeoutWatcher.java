@@ -12,7 +12,6 @@ import soot.jimple.infoflow.results.InfoflowResults;
 
 /**
  * Class for enforcing timeouts on IFDS solvers
- * 用于在 IFDS 求解器上强制超时的类
  * 
  * @author Steven Arzt
  *
@@ -61,11 +60,9 @@ public class FlowDroidTimeoutWatcher implements IMemoryBoundedSolverStatusNotifi
 
 	/**
 	 * Creates a new instance of the {@link FlowDroidTimeoutWatcher} class
-	 * 创建 {@link FlowDroidTimeoutWatcher} 类的新实例
 	 * 
 	 * @param timeout The timeout in seconds after which the solvers shall be
 	 *                stopped
-	 *                以秒为单位的超时时间，在此之后求解器将停止
 	 * @param res     The InfoflowResults object
 	 */
 	public FlowDroidTimeoutWatcher(long timeout, InfoflowResults res) {

@@ -3,7 +3,6 @@ package soot.jimple.infoflow.memory;
 /**
  * Interface that exposes special functions only required by FlowDroid's memory
  * management components
- * 公开仅 FlowDroid 的内存管理组件所需的特殊功能的接口
  * 
  * @author Steven Arzt
  *
@@ -13,7 +12,6 @@ public interface IMemoryBoundedSolver {
 	/**
 	 * Interface that a memory-bounded solver can use to notify listeners of
 	 * status changes
-	 * 内存有限的解算器可以用来通知侦听器状态更改的接口
 	 * 
 	 * @author Steven Arzt
 	 *
@@ -22,11 +20,9 @@ public interface IMemoryBoundedSolver {
 
 		/**
 		 * Method that is called when the solver has received its first task
-		 * 该方法在解算器接收到第一个任务时调用
 		 * 
 		 * @param solver
 		 *            The solver that sends the notification
-		 *            发送通知的解算器
 		 */
 		public void notifySolverStarted(IMemoryBoundedSolver solver);
 
@@ -66,11 +62,9 @@ public interface IMemoryBoundedSolver {
 	 * In case this solver was killed before it could complete its task, this
 	 * method returns the reason for the abortion. Otherwise, this method
 	 * returns null.
-	 * 如果此解算器在完成其任务之前被终止，则此方法将返回终止的原因。否则，此方法返回null。
 	 * 
 	 * @return The reason for the abortion in case the solver was killed,
 	 *         otherwise null
-	 *         流产原因以防解算器被杀，否则为空
 	 */
 	ISolverTerminationReason getTerminationReason();
 
@@ -78,7 +72,6 @@ public interface IMemoryBoundedSolver {
 	 * Resets the solver to its initial state after it has been forcefully
 	 * terminated. After calling this method, the solver is expected to accept
 	 * new tasks.
-	 * 强制终止解算器后，将解算器重置为其初始状态。调用此方法后，解算器将接受新任务。
 	 */
 	void reset();
 

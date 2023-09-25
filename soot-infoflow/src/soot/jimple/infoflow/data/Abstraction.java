@@ -29,7 +29,6 @@ import soot.jimple.infoflow.sourcesSinks.definitions.ISourceSinkDefinition;
 /**
  * The abstraction class contains all information that is necessary to track the
  * taint.
- * 抽象类包含跟踪污点所需的所有信息。
  * 
  * @author Steven Arzt
  * @author Christian Fritz
@@ -40,7 +39,6 @@ public class Abstraction implements Cloneable, FastSolverLinkedNode<Abstraction,
 
 	/**
 	 * the access path contains the currently tainted variable or field
-	 * 这个包括对应的local变量，对应类的field
 	 */
 	protected AccessPath accessPath;
 
@@ -219,7 +217,6 @@ public class Abstraction implements Cloneable, FastSolverLinkedNode<Abstraction,
 		return deriveNewAbstraction(p, currentStmt, isImplicit);
 	}
 
-	//在这个方法里面创建新的变量
 	public Abstraction deriveNewAbstraction(AccessPath p, Stmt currentStmt, boolean isImplicit) {
 		// If the new abstraction looks exactly like the current one, there is
 		// no need to create a new object

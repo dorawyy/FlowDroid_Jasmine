@@ -2,7 +2,6 @@ package soot.jimple.infoflow.results;
 
 /**
  * Class that records performance data on a FlowDroid run
- * 记录 FlowDroid 运行性能数据的类
  * 
  * @author Steven Arzt
  *
@@ -47,10 +46,8 @@ public class InfoflowPerformanceData {
 
 	/**
 	 * Gets the number of seconds spent on the taint propagation
-	 * 获取用于污染传播的秒数
 	 * 
 	 * @return The number of seconds spent on the taint propagation
-	 * 污染传播所花费的秒数
 	 */
 	public int getTaintPropagationSeconds() {
 		return taintPropagationSeconds;
@@ -101,12 +98,10 @@ public class InfoflowPerformanceData {
 	/**
 	 * Sets the total number of seconds that the data flow analysis has spent to
 	 * create the flow results
-	 * 设置数据流分析用于创建流结果的总秒数
 	 * 
 	 * @param totalRuntimeSeconds The total number of seconds that the data flow
 	 *                            analysis has spent to create the flow results, or
 	 *                            -1 if no such data has been recorded
-	 *                            数据流分析用于创建流结果的总秒数，如果未记录此类数据，则为-1
 	 */
 	public void setTotalRuntimeSeconds(int totalRuntimeSeconds) {
 		this.totalRuntimeSeconds = totalRuntimeSeconds;
@@ -194,11 +189,9 @@ public class InfoflowPerformanceData {
 	/**
 	 * Updates the maximum memory consumption with the given consumption value. The
 	 * new value is the maximum between of old value and the new one.
-	 * 用给定的消耗值更新最大内存消耗。新值是旧值和新值之间的最大值。
 	 * 
 	 * @param usedMemory The maximum memory consumption of a computation step in
 	 *                   megabytes
-	 *                   计算步骤的最大内存消耗量，以兆字节为单位
 	 */
 	public void updateMaxMemoryConsumption(int usedMemory) {
 		int mem = this.maxMemoryConsumption;
@@ -210,7 +203,6 @@ public class InfoflowPerformanceData {
 
 	/**
 	 * Adds the given number of seconds to the time spent on taint propagation
-	 * 将给定的秒数添加到污染传播所花费的时间
 	 * 
 	 * @param toaAdd The time to add in seconds
 	 */
@@ -224,11 +216,9 @@ public class InfoflowPerformanceData {
 
 	/**
 	 * Sets the number of sources that were identified in the given input program
-	 * 设置给定输入程序中标识的source的数目
 	 * 
 	 * @param sourceCount The number of sources that were identified in the given
 	 *                    input program
-	 *                    给定输入程序中标识的source的数目
 	 */
 	public void setSourceCount(int sourceCount) {
 		this.sourceCount = sourceCount;
@@ -245,11 +235,9 @@ public class InfoflowPerformanceData {
 
 	/**
 	 * Sets the number of sinks that were identified in the given input program
-	 * 设置给定输入程序中标识的sink数
 	 * 
-	 * @param sinkCount The number of sinks that were identified in the given
+	 * @param sourceCount The number of sinks that were identified in the given
 	 *                    input program
-	 *                    给定输入程序中标识的sink数
 	 */
 	public void setSinkCount(int sinkCount) {
 		this.sinkCount = sinkCount;

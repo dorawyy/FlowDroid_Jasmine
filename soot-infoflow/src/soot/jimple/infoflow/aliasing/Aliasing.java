@@ -421,10 +421,8 @@ public class Aliasing {
 
 	/**
 	 * Adds a new method to be excluded from the must-alias analysis
-	 * 添加要从must别名分析中排除的新方法
 	 * 
 	 * @param method The method to be excluded
-	 *               排除方法
 	 */
 	public void excludeMethodFromMustAlias(SootMethod method) {
 		this.excludedFromMustAliasAnalysis.add(method);
