@@ -6,3 +6,15 @@ dataleak/target/
 .idea/
 *.iml
 .DS_Store
+soot-infoflow/.settings
+soot-infoflow/.classpath
+soot-infoflow/.project
+soot-infoflow-summaries/.settings
+soot-infoflow-summaries/.classpath
+soot-infoflow-summaries/.project
+soot-infoflow-cmd/.settings
+soot-infoflow-cmd/.classpath
+soot-infoflow-cmd/.project
+soot-infoflow-android/.settings
+soot-infoflow-android/.classpath
+soot-infoflow-android/.project
