@@ -18,3 +18,4 @@ soot-infoflow-cmd/.project
 soot-infoflow-android/.settings
 soot-infoflow-android/.classpath
 soot-infoflow-android/.project
+.vscode
