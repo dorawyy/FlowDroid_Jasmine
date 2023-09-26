@@ -1,5 +1,0 @@
-{
-  "source": "/data/yingying/mista/jasmineData/FlowDroid_Jasmine_new/dataleak/src/main/resources/source.json",
-  "main_class": "com.macro.mall.MallAdminApplication",
-  "edge_config": "/data/yingying/mista/jasmineData/FlowDroid_Jasmine_new/dataleak/src/main/resources/config.properties"
-}
