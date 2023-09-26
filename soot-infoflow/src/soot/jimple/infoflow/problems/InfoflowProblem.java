@@ -405,11 +405,11 @@ public class InfoflowProblem extends AbstractInfoflowProblem {
 				final Stmt stmt = (Stmt) src;
 				final InvokeExpr ie = (stmt != null && stmt.containsInvokeExpr()) ? stmt.getInvokeExpr() : null;
 
-				final Local[] paramLocals = dest.getActiveBody().getParameterLocals().toArray(new Local[0]);
+				final Local[] paramLocals = dest.retrieveActiveBody().getParameterLocals().toArray(new Local[0]);
 
 				// This is not cached by Soot, so accesses are more expensive
 				// than one might think
-				final Local thisLocal = dest.isStatic() ? null : dest.getActiveBody().getThisLocal();
+				final Local thisLocal = dest.isStatic() ? null : dest.retrieveActiveBody().getThisLocal();
 
 				// If we can't reason about aliases, there's little we can do here
 				final Aliasing aliasing = manager.getAliasing();
