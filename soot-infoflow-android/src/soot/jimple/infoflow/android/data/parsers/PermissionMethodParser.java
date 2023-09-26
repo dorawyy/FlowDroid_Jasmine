@@ -201,7 +201,7 @@ public class PermissionMethodParser implements ISourceSinkDefinitionProvider {
 		String classData = "";
 		String permData = "";
 		Set<String> permissions = null;
-		;
+
 		if (groupIdx < m.groupCount() && m.group(groupIdx) != null) {
 			permData = m.group(groupIdx);
 			if (permData.contains("->")) {
