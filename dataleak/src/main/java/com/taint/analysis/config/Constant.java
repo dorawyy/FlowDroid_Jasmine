@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 
+import com.taint.analysis.Main;
+
 /**
  * Constant
  */
@@ -18,7 +20,7 @@ public class Constant {
   public static void loadConstant() throws IOException {
     // Creating instance to avoid static member methods
     Constant instance = new Constant();
-    InputStream is = instance.getFileAsIOStream("dataleak.properties");
+    InputStream is = instance.getFileAsIOStream("dataleak-" + Main.benchmark + ".properties");
     instance.printFileContent(is);
   }
 
