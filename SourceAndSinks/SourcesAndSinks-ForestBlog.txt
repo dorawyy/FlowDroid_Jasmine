@@ -10,6 +10,7 @@
 <java.io.PrintWriter: void flush()> -> _SINK_
 <org.slf4j.Logger: void info(org.slf4j.Marker,java.lang.String)> -> _SINK_
 <org.slf4j.Logger: void info(java.lang.String,java.lang.Object)> -> _SINK_
+<javax.servlet.http.HttpServletRequest: java.lang.String getHeader(java.lang.String)> -> _SOURCE_
 <synthetic.method.HttpServletRequestImpl: java.lang.String getHeader(java.lang.String)> -> _SOURCE_
 <net.logstash.logback.marker.Markers: net.logstash.logback.marker.LogstashMarker appendEntries(java.util.Map)> -> _BOTH_
 <cn.hutool.json.JSONUtil: cn.hutool.json.JSON parse(java.lang.Object)> -> _BOTH_
@@ -78,7 +79,7 @@
 <org.owasp.webgoat.HammerHead: void log(javax.servlet.http.HttpServletRequest,java.lang.String)> -> _SINK_
 <org.apache.xmlrpc.server.XmlRpcServerWorker: java.lang.Object execute(org.apache.xmlrpc.XmlRpcRequest)> -> _SINK_
 <org.owasp.webgoat.session.LessonSession: void setAuthenticated(boolean)> -> _SINK_
-<org.springframework.orm.hibernate3.support.ClobStringType: int[] sqlTypes)> -> _SINK_
+<org.springframework.orm.hibernate3.support.ClobStringType: int[] sqlTypes()> -> _SINK_
 <org.owasp.webgoat.session.WebSession: void update(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)> -> _SINK_
 <org.hibernate.validator.internal.util.ConcurrentReferenceHashMap: boolean replace(java.lang.Object,java.lang.Object,java.lang.Object)> -> _SINK_
 <org.apache.xmlrpc.webserver.WebServer: void setParanoid(boolean)> -> _SINK_
@@ -112,48 +113,48 @@
 <org.jsoup.nodes.Node: org.jsoup.nodes.Node before(java.lang.String)> -> _SINK_
 <org.jsoup.nodes.Node: org.jsoup.nodes.Node after(java.lang.String)> -> _SINK_
 <javax.servlet.http.HttpServletResponseWrapper: void sendRedirect(java.lang.String)> -> _SINK_
-<org.springframework.security.config.http.CsrfBeanDefinitionParser: org.springframework.beans.factory.config.BeanDefinition getCsrfLogoutHandler)> -> _SOURCE_
+<org.springframework.security.config.http.CsrfBeanDefinitionParser: org.springframework.beans.factory.config.BeanDefinition getCsrfLogoutHandler()> -> _SOURCE_
 <org.springframework.security.config.authentication.CachingUserDetailsService: org.springframework.security.core.userdetails.UserDetails loadUserByUsername(java.lang.String)> -> _SOURCE_
 <org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper: org.springframework.security.core.userdetails.UserDetails loadUserDetails(org.springframework.security.core.Authentication)> -> _SOURCE_
-<java.io.File: java.io.File getAbsoluteFile)> -> _SOURCE_
+<java.io.File: java.io.File getAbsoluteFile()> -> _SOURCE_
 <org.apache.commons.jxpath.ri.parser.XPathParser: java.lang.String unescape(java.lang.String)> -> _SOURCE_
-<org.springframework.security.config.http.FormLoginBeanDefinitionParser: java.lang.String getLoginPage)> -> _SOURCE_
+<org.springframework.security.config.http.FormLoginBeanDefinitionParser: java.lang.String getLoginPage()> -> _SOURCE_
 <org.apache.xmlrpc.webserver.HttpServletRequestImpl: java.lang.String getRealPath(java.lang.String)> -> _SOURCE_
-<com.google.auth.oauth2.UserCredentials: java.lang.String getClientSecret)> -> _SOURCE_
+<com.google.auth.oauth2.UserCredentials: java.lang.String getClientSecret()> -> _SOURCE_
 <org.springframework.web.servlet.tags.UrlTag: java.lang.String createQueryString(java.util.List,java.util.Set,boolean)> -> _SOURCE_
 <org.springframework.messaging.simp.stomp.StompDecoder: java.lang.String unescape(java.lang.String)> -> _SOURCE_
-<org.springframework.web.servlet.tags.UrlTag: java.lang.String createUrl)> -> _SOURCE_
-<java.io.File: java.io.File getCanonicalFile)> -> _SOURCE_
+<org.springframework.web.servlet.tags.UrlTag: java.lang.String createUrl()> -> _SOURCE_
+<java.io.File: java.io.File getCanonicalFile()> -> _SOURCE_
 <org.apache.commons.jxpath.ri.JXPathContextReferenceImpl: java.lang.Object getValue(java.lang.String)> -> _SOURCE_
-<org.apache.xmlrpc.webserver.RequestData: java.lang.String getMethod)> -> _SOURCE_
+<org.apache.xmlrpc.webserver.RequestData: java.lang.String getMethod()> -> _SOURCE_
 <com.google.auth.oauth2.DefaultCredentialsProvider: com.google.auth.oauth2.GoogleCredentials getDefaultCredentials(com.google.api.client.http.HttpTransport)> -> _SOURCE_
 <org.jsoup.nodes.Entities: java.lang.String unescape(java.lang.String)> -> _SOURCE_
 <org.springframework.util.DefaultPropertiesPersister: java.lang.String unescape(java.lang.String)> -> _SOURCE_
 <org.owasp.webgoat.plugins.Plugin: void loadFiles(java.nio.file.Path)> -> _SOURCE_
 <org.apache.xmlrpc.webserver.HttpServletResponseImpl: java.lang.String getHeader(java.lang.String)> -> _SOURCE_
 <com.google.auth.oauth2.UserAuthorizer: com.google.auth.oauth2.UserCredentials getCredentialsFromCode(java.lang.String,java.net.URI)> -> _SOURCE_
-<org.dmfs.oauth2.client.http.requests.ResourceOwnerPasswordTokenRequest: org.dmfs.httpclient.HttpRequestEntity requestEntity)> -> _SOURCE_
+<org.dmfs.oauth2.client.http.requests.ResourceOwnerPasswordTokenRequest: org.dmfs.httpclient.HttpRequestEntity requestEntity()> -> _SOURCE_
 <org.owasp.webgoat.util.HtmlEncoder: java.lang.String decode(java.lang.String)> -> _SOURCE_
 <javax.naming.ldap.Rdn: java.lang.Object unescapeValue(java.lang.String)> -> _SOURCE_
 <org.apache.xmlrpc.webserver.XmlRpcServletServer: org.apache.xmlrpc.common.XmlRpcHttpRequestConfigImpl getConfig(javax.servlet.http.HttpServletRequest)> -> _SOURCE_
 <org.apache.xmlrpc.webserver.HttpServletRequestImpl: void parsePostData(java.util.Map,java.io.InputStream,java.lang.String)> -> _SOURCE_
-<org.springframework.security.concurrent.DelegatingSecurityContextExecutorService: java.util.concurrent.ExecutorService getDelegate)> -> _SOURCE_
-<org.springframework.security.config.annotation.web.builders.HttpSecurity: org.springframework.security.config.'annotation'.web.configurers.HeadersConfigurer headers)> -> _SOURCE_
-<org.springframework.web.servlet.tags.EscapeBodyTag: java.lang.String readBodyContent)> -> _SOURCE_
+<org.springframework.security.concurrent.DelegatingSecurityContextExecutorService: java.util.concurrent.ExecutorService getDelegate()> -> _SOURCE_
+<org.springframework.security.config.annotation.web.builders.HttpSecurity: org.springframework.security.config.'annotation'.web.configurers.HeadersConfigurer headers()> -> _SOURCE_
+<org.springframework.web.servlet.tags.EscapeBodyTag: java.lang.String readBodyContent()> -> _SOURCE_
 <org.springframework.web.util.UrlPathHelper: java.lang.String decodeRequestString(javax.servlet.http.HttpServletRequest,java.lang.String)> -> _SOURCE_
 <org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder: org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder requestAttr(java.lang.String,java.lang.Object)> -> _SOURCE_
 <com.google.auth.oauth2.UserAuthorizer: com.google.auth.oauth2.UserCredentials getCredentials(java.lang.String)> -> _SOURCE_
 <org.springframework.web.socket.sockjs.transport.handler.JsonpReceivingTransportHandler: java.lang.String[] readMessages(org.springframework.http.server.ServerHttpRequest)> -> _SOURCE_
 <com.google.auth.oauth2.DefaultCredentialsProvider: com.google.auth.oauth2.GoogleCredentials getDefaultCredentialsUnsynchronized(com.google.api.client.http.HttpTransport)> -> _SOURCE_
-<org.springframework.security.config.http.FormLoginBeanDefinitionParser: java.lang.String getLoginProcessingUrl)> -> _SOURCE_
+<org.springframework.security.config.http.FormLoginBeanDefinitionParser: java.lang.String getLoginProcessingUrl()> -> _SOURCE_
 <org.apache.xmlrpc.webserver.HttpServletRequestImpl: java.lang.String readLine(byte[])> -> _SOURCE_
 <org.springframework.security.config.http.LogoutBeanDefinitionParser: org.springframework.beans.factory.config.BeanDefinition getLogoutRequestMatcher(java.lang.String)> -> _SOURCE_
-<org.springframework.security.config.annotation.web.configurers.LogoutConfigurer: java.util.List getLogoutHandlers)> -> _SOURCE_
-<org.apache.xmlrpc.webserver.RequestData: java.lang.String getHttpVersion)> -> _SOURCE_
+<org.springframework.security.config.annotation.web.configurers.LogoutConfigurer: java.util.List getLogoutHandlers()> -> _SOURCE_
+<org.apache.xmlrpc.webserver.RequestData: java.lang.String getHttpVersion()> -> _SOURCE_
 <com.novell.ldap.rfc2251.RfcFilter: byte[] unescapeString(java.lang.String)> -> _SOURCE_
 <org.springframework.web.socket.config.HandlersBeanDefinitionParser: org.springframework.beans.factory.config.BeanDefinition parse(org.w3c.dom.Element,org.springframework.beans.factory.xml.ParserContext)> -> _SOURCE_
-<com.google.auth.oauth2.DefaultCredentialsProvider: java.io.File getWellKnownCredentialsFile)> -> _SOURCE_
-<org.apache.xmlrpc.webserver.HttpServletRequestImpl: void parseParameters)> -> _SOURCE_
+<com.google.auth.oauth2.DefaultCredentialsProvider: java.io.File getWellKnownCredentialsFile()> -> _SOURCE_
+<org.apache.xmlrpc.webserver.HttpServletRequestImpl: void parseParameters()> -> _SOURCE_
 <org.jsoup.parser.Parser: org.jsoup.nodes.Document parse(java.lang.String,java.lang.String)> -> _SOURCE_
 <javax.servlet.ServletRequestWrapper: java.lang.String getParameter(java.lang.String)> -> _SOURCE_
 
@@ -218,6 +219,10 @@
 <com.baomidou.mybatisplus.extension.service.IService: boolean save(java.lang.Object)> -> _SINK_
 <com.baomidou.mybatisplus.extension.service.IService: boolean saveBatch(java.util.Collection)> -> _SINK_
 <com.baomidou.mybatisplus.extension.service.IService: boolean saveBatch(java.util.Collection,int)> -> _SINK_
+<com.baomidou.mybatisplus.extension.service.IService: boolean saveOrUpdateBatch(java.util.Collection)> -> _SINK_
+<com.baomidou.mybatisplus.extension.service.IService: boolean saveOrUpdateBatch(java.util.Collection,int)> -> _SINK_
+<com.baomidou.mybatisplus.extension.service.IService: boolean saveOrUpdate(java.lang.Object)> -> _SINK_
+<com.baomidou.mybatisplus.extension.service.IService: boolean saveOrUpdate(java.lang.Object,com.baomidou.mybatisplus.core.conditions.Wrapper)> -> _SINK_
 <java.io.PrintWriter: java.io.PrintWriter printf(java.lang.String,java.lang.Object[])> -> _SINK_
 <java.io.PrintWriter: java.io.PrintWriter printf(java.util.Locale,java.lang.String,java.lang.Object[])> -> _SINK_
 <java.io.RandomAccessFile: void write(int)> -> _SINK_
@@ -369,7 +374,6 @@
 <org.springframework.mail.javamail.JavaMailSenderImpl: void setPassword(java.lang.String)> -> _SINK_
 <org.slf4j.Logger: void debug(java.lang.String,java.lang.String,java.lang.String,java.lang.String)> -> _SINK_
 <com.fasterxml.jackson.databind.ObjectMapper: String writeValueAsString(java.lang.Object)> -> _SINK_
-<org.springframework.web.multipart.MultipartFile: java.lang.String getOriginalFilename()> -> _SOURCE_
 <org.springframework.web.servlet.mvc.support.RedirectAttributes: org.springframework.web.servlet.mvc.support.RedirectAttributes addFlashAttribute(java.lang.String,java.lang.Object)> -> _SINK_
 <javax.servlet.http.HttpServletRequest: java.util.Map getParameterMap()> -> _SOURCE_
 <redis.clients.jedis.Jedis: java.lang.String set(java.lang.String,java.lang.String,redis.clients.jedis.params.SetParams)> -> _SOURCE_
@@ -379,140 +383,10 @@
 <com.alibaba.fastjson.JSONObject: java.lang.String toJSONString(java.lang.Object)> -> _SINK_
 <com.alibaba.fastjson.JSONObject: java.lang.String toJSONString(java.lang.Object)> -> _SOURCE_
 
-%jeecg
-<org.jeecg.common.api.dto.message.MessageDTO: void <init>()> -> _SOURCE_
-<org.jeecg.common.api.dto.message.MessageDTO: void setFromUser(java.lang.String)> -> _SOURCE_
-<org.jeecg.common.api.dto.message.MessageDTO: void setToUser(java.lang.String)> -> _SOURCE_
-<org.jeecg.common.api.dto.message.MessageDTO: void setToAll(boolean)> -> _SOURCE_
-
-<org.jeecg.common.api.dto.message.TemplateMessageDTO: void <init>()> -> _SOURCE_
-<org.jeecg.common.api.dto.message.TemplateMessageDTO: void setFromUser(java.lang.String)> -> _SOURCE_
-<org.jeecg.common.api.dto.message.TemplateMessageDTO: void setToUser(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.common.api.dto.message.TemplateDTO: void <init>()> -> _SOURCE_
-<org.jeecg.common.api.dto.message.TemplateDTO: void setTemplateCode(java.lang.String)> -> _SOURCE_
-<org.jeecg.common.api.dto.message.TemplateDTO: void setTemplateParam(java.util.Map)> -> _SOURCE_
-
-<org.jeecg.modules.api.controller.SystemAPIController$$SpringCGLIB: java.lang.String getusername()> -> _SOURCE_
-<org.jeecg.modules.api.controller.SystemAPIController$$SpringCGLIB: java.lang.String getusernames()> -> _SOURCE_
-<org.jeecg.modules.api.controller.SystemAPIController$$SpringCGLIB: java.lang.String getuserIds()> -> _SOURCE_
-<org.jeecg.modules.api.controller.SystemAPIController$$SpringCGLIB: java.lang.String getuserId()> -> _SOURCE_
-
-<org.jeecg.modules.cas.controller.CasClientController$$SpringCGLIB: java.lang.String getticket()> -> _SOURCE_
-<org.jeecg.modules.cas.controller.CasClientController$$SpringCGLIB: java.lang.String getservice()> -> _SOURCE_
-
-<org.jeecg.modules.message.entity.SysMessage: void <init>()> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsContent(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsParam(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsReceiver(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsResult(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsSendStatus(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsSendTime(java.util.Date)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsTitle(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessage: org.jeecg.modules.message.entity.SysMessage setEsType(java.lang.String)> -> _SOURCE_
-<org.jeec
-
-<org.jeecg.modules.message.entity.SysMessageTemplate: void <init>()> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessageTemplate: org.jeecg.modules.message.entity.SysMessageTemplate setTemplateCode(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessageTemplate: org.jeecg.modules.message.entity.SysMessageTemplate setTemplateName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessageTemplate: org.jeecg.modules.message.entity.SysMessageTemplate setTemplateContent(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessageTemplate: org.jeecg.modules.message.entity.SysMessageTemplate setTemplateTestJson(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.message.entity.SysMessageTemplate: org.jeecg.modules.message.entity.SysMessageTemplate setTemplateType(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.quartz.entity.QuartzJob: void <init>()> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setId(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setCreateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setUpdateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setJobClassName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setCronExpression(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setParameter(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setDescription(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.quartz.entity.QuartzJob: void setStatus(java.lang.Integer)> -> _SOURCE_
-
-<org.jeecg.modules.system.model.DuplicateCheckVo: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.model.DuplicateCheckVo: void setTableName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.DuplicateCheckVo: void setFieldName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.DuplicateCheckVo: void setFieldVal(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.DuplicateCheckVo: void setDataId(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.system.model.SysLoginModel: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setUsername(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setPassword(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setCaptcha(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setCheckKey(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.system.entity.SysUser: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setId(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setUsername(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setRealname(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setPassword(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setSalt(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setAvatar(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setBirthday(java.util.Date)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setSex(java.lang.Integer)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setEmail(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setPhone(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setOrgCode(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setOrgCodeTxt(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setStatus(java.lang.Integer)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setDelFlag(java.lang.Integer)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setWorkNo(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setPost(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setTelephone(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setCreateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setCreateTime(java.util.Date)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setUpdateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setUpdateTime(java.util.Date)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setActivitiSync(java.lang.Integer)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setUserIdentity(java.lang.Integer)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setDepartIds(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setRelTenantIds(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUser: org.jeecg.modules.system.entity.SysUser setClientId(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.system.model.SysLoginModel: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setUsername(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setPassword(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setCaptcha(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.model.SysLoginModel: void setCheckKey(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.system.entity.SysAnnouncement: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setMsgContent(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setSender(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setPriority(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setMsgCategory(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setMsgType(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setSendStatus(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setDelFlag(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setCreateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setUpdateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setUserIds(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setOpenType(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setMsgAbstract(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysAnnouncement: void setDtTaskId(java.lang.String)> -> _SOURCE_
-
-<org.springframework.web.servlet.ModelAndView: void <init>()> -> _SOURCE_
-<org.springframework.web.servlet.ModelAndView: void setViewName(java.lang.String)> -> _SOURCE_
-<org.springframework.web.servlet.ModelAndView: void setView(org.springframework.web.servlet.View)> -> _SOURCE_
-<org.springframework.web.servlet.ModelAndView: void setStatus(org.springframework.http.HttpStatus)> -> _SOURCE_
-
-<org.jeecg.modules.system.entity.SysUserAgent: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setId(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setUserName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setAgentUserName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setStatus(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setCreateName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setCreateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setUpdateName(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setUpdateBy(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setSysOrgCode(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.entity.SysUserAgent: void setSysCompanyCode(java.lang.String)> -> _SOURCE_
-
-<org.jeecg.modules.system.vo.SysUserRoleVO: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.vo.SysUserRoleVO: void setRoleId(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.vo.SysUserRoleVO: void setUserIdList(java.util.List)> -> _SOURCE_
-
-<org.jeecg.modules.system.vo.SysDepartUsersVO: void <init>()> -> _SOURCE_
-<org.jeecg.modules.system.vo.SysDepartUsersVO: void setDepId(java.lang.String)> -> _SOURCE_
-<org.jeecg.modules.system.vo.SysDepartUsersVO: void setUserIdList(java.util.List)> -> _SOURCE_
-
-
+%ForestBlog
+<org.springframework.web.multipart.MultipartFile: void transferTo(java.io.File)> _SINK_
+<com.liuyanzhao.ssm.blog.dto.JsonResult: com.liuyanzhao.ssm.blog.dto.JsonResult ok(java.lang.Object)> _SINK_
+<com.liuyanzhao.ssm.blog.entity.User: java.lang.Integer getUserId()> -> _SOURCE_
+<com.liuyanzhao.ssm.blog.entity.User: java.lang.String getUserEmail()> -> _SOURCE_
+<com.liuyanzhao.ssm.blog.enums.ArticleStatus: java.lang.Integer getValue()> -> _SOURCE_
+<com.liuyanzhao.ssm.blog.controller.home.IndexController: java.lang.String getkeywords()> -> _SOURCE_

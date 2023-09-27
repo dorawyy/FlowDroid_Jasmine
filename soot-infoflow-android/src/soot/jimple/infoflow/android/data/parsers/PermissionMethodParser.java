@@ -128,14 +128,17 @@ public class PermissionMethodParser implements ISourceSinkDefinitionProvider {
 		Pattern pNoRet = Pattern.compile(regexNoRet);
 
 		for (String line : this.data) {
+			logger.info(String.format("The line is: %s", line));
 			if (line.isEmpty() || line.startsWith("%"))
 				continue;
 			Matcher m = p.matcher(line);
 			if (m.find()) {
+				logger.info(String.format("Found regex match: %s", line));
 				createMethod(m);
 			} else {
 				Matcher mNoRet = pNoRet.matcher(line);
 				if (mNoRet.find()) {
+					logger.info(String.format("Found regexNoRet match: %s", line));
 					createMethod(mNoRet);
 				} else
 					logger.warn(String.format("Line does not match: %s", line));

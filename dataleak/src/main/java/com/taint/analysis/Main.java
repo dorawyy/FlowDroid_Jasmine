@@ -26,6 +26,6 @@ public class Main {
         application.setTaintWrapper((new EasyTaintWrapper(taintWrapperFile)));
 
         //The main part of the program
-        application.runInfoflow(System.getProperty("user.dir") + File.separator + "soot-infoflow-android/SourcesAndSinks-"+ benchmark +".txt");
+        application.runInfoflow(System.getProperty("user.dir") + File.separator + "SourceAndSinks/SourcesAndSinks-"+ benchmark +".txt");
     }
 }
