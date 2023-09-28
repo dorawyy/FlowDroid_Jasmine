@@ -5,7 +5,7 @@ import soot.SootMethod;
 
 import java.util.ArrayList;
 
-public class EntryPointConfig {
+public class JasmineEntryPointConfig {
 
     public static ArrayList<SootMethod> getEntryPoints(String benchmark) {
 

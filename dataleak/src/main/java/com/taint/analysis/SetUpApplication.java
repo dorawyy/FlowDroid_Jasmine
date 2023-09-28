@@ -2,11 +2,16 @@ package com.taint.analysis;
 
 import analysis.CreateEdge;
 
+import com.taint.analysis.config.Constant;
 import com.taint.analysis.infoflow.IMyInfoFlow;
 import com.taint.analysis.infoflow.MyInfoFlow;
 import com.taint.analysis.result.ResultAggreator;
-import com.taint.analysis.utils.BenchmarksConfig;
-import com.taint.analysis.utils.EntryPointConfig;
+import com.taint.analysis.utils.CallGraphOption;
+import com.taint.analysis.utils.ServiceBenchmarksConfig;
+// import com.taint.analysis.utils.JasmineBenchmarksConfig;
+// import com.taint.analysis.utils.JasmineEntryPointConfig;
+import com.taint.analysis.utils.ServiceEntryPointConfig;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import soot.Main;
@@ -85,14 +90,16 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
      * create dummy main
      */
     private void createMainMethod() {
-        if (com.taint.analysis.Main.analysisAlgorithm.equals("jasmine")) {
+        if (Constant.CFG_OPTION.equals(CallGraphOption.CHA)) {
+            String path = System.getProperty("user.dir") + File.separator + "dataleak/src/main/resources/config.properties"; // specify the file for beans
+            logger.info(path);
             CreateEdge edge = new CreateEdge();
-            String path = System.getProperty("user.dir") + File.separator + "dataleak/src/main/resources/config.properties";
             edge.initCallGraph(path);
-            System.out.println("MainClass: " + edge.projectMainMethod.getDeclaringClass());
+            logger.info("MainClass: " + edge.projectMainMethod.getDeclaringClass());
             Scene.v().setMainClass(edge.projectMainMethod.getDeclaringClass());
         } else {
-            ArrayList<SootMethod> entryPoints = EntryPointConfig.getEntryPoints(com.taint.analysis.Main.benchmark);
+            // ArrayList<SootMethod> entryPoints = JasmineEntryPointConfig.getEntryPoints(com.taint.analysis.Main.benchmark);
+            ArrayList<SootMethod> entryPoints = ServiceEntryPointConfig.getEntryPoints(Constant.BENCHMARK_NAME);
             Scene.v().setEntryPoints(entryPoints);
         }
     }
@@ -112,9 +119,10 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
         logger.info("Initializing Soot...");
 
         G.reset();
-        List<String> dir = BenchmarksConfig.getSourceProcessDir(com.taint.analysis.Main.benchmark);
+        // List<String> dir = JasmineBenchmarksConfig.getSourceProcessDir(com.taint.analysis.Main.benchmark);
+        List<String> dir = ServiceBenchmarksConfig.getSourceProcessDir(Constant.BENCHMARK_NAME);
 
-        if (com.taint.analysis.Main.analysisAlgorithm.equals("spark") || com.taint.analysis.Main.analysisAlgorithm.equals("jasmine")) {
+        if (Constant.CFG_OPTION.equals(CallGraphOption.SPARK) || Constant.CFG_OPTION.equals(CallGraphOption.JASMINE)) {
             // 开启spack
             Options.v().setPhaseOption("cg.spark", "on");
             Options.v().setPhaseOption("cg.spark", "verbose:true");
@@ -181,7 +189,8 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
         String sootCp = javaHome + File.separator + "lib" + File.separator + "rt.jar";
         sootCp += File.pathSeparator + javaHome + File.separator + "lib" + File.separator + "jce.jar";
 
-        String dependencyDirectory = BenchmarksConfig.getDependencyDir(com.taint.analysis.Main.benchmark);
+        // String dependencyDirectory = JasmineBenchmarksConfig.getDependencyDir(com.taint.analysis.Main.benchmark);
+        String dependencyDirectory = ServiceBenchmarksConfig.getDependencyDir(Constant.BENCHMARK_NAME);
 
         File file = new File(dependencyDirectory);
         File[] fs = file.listFiles();

@@ -3,7 +3,7 @@ package com.taint.analysis.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BenchmarksConfig {
+public class JasmineBenchmarksConfig {
     private static String basePath = "/data/yingying/mista/jasmineData/Benchmark_FlowDroid";
     public static List<String> getSourceProcessDir(String benchmark) {
         List<String> dir = new ArrayList<>();

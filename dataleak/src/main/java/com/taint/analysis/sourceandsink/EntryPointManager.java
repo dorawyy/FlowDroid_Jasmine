@@ -29,17 +29,23 @@ public class EntryPointManager {
     public void loadJavaEntryPoints() {
 
         Chain<SootClass> classes = Scene.v().getApplicationClasses();
-        HashSet<String> customizeEntryPoints = getCustomizeEntryPoints();
+        HashSet<String> customEntryPoints = getCustomizeEntryPoints();
 
         for (SootClass sc : classes) {
             for (SootMethod method : sc.getMethods()) {
-                if (!method.isAbstract()) entryPoints.add(method);
+                if (!method.isAbstract()) 
+                    entryPoints.add(method);
             }
+        }
+
+        for (String str : customEntryPoints){
+            SootMethod sm = Scene.v().getMethod(str);
+            entryPoints.add(sm);
         }
     }
 
     public static HashSet<String> getCustomizeEntryPoints() {
-        HashSet<String> customizeEntryPoints = new HashSet<>();
+        HashSet<String> customEntryPoints = new HashSet<>();
         String sourceFileName = Constant.SOURCE_FILE_NAME;
 
         try {
@@ -48,12 +54,12 @@ public class EntryPointManager {
             JsonArray array = gson.fromJson(configFileInfo, JsonArray.class);
             for (JsonElement element : array) {
                 JsonObject object = element.getAsJsonObject();
-                customizeEntryPoints.add(object.get("method").getAsString());
+                customEntryPoints.add(object.get("method").getAsString());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return customizeEntryPoints;
+        return customEntryPoints;
     }
 
     public List<SootMethod> getEntryPoints() {

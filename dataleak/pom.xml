@@ -19,15 +19,16 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+        <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
     </properties>
     
     <dependencies>
         <dependency>
-            <groupId>com.example</groupId>
+            <groupId>analysis</groupId>
             <artifactId>PointerAnalysis</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/dist/PointerAnalysis-1.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${pom.basedir}/libs/PointerAnalysis-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>de.tud.sse</groupId>
