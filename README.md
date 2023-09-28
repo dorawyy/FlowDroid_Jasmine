@@ -33,4 +33,10 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis{
 }
 ```
 
-After that, running FlowDroid_Jasmine and the taint analysis result in ./FlowDroid_Jasmine/log/ directory.
+After that, running FlowDroid_Jasmine with the following command:
+```bash
+> cd FlowDroid_Jasmine
+> java -cp ./dataleak/libs/PointerAnalysis-1.0-SNAPSHOT.jar:./dataleak/target/dataleak-jar-with-dependencies.jar com.taint.analysis.Main
+```
+
+Taint analysis result will be produced to `FlowDroid_Jasmine/log` directory; the jimple files will be produced to `FlowDroid_Jasmine/sootOutput/` directory.

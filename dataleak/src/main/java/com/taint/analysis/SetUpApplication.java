@@ -84,6 +84,7 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
             e.printStackTrace();
             logger.error("read file error%s", e.getStackTrace().toString());
         }
+        PackManager.v().writeOutput(); // print out the modified jimple files modfiied by Jasmine
     }
 
     /**
@@ -123,7 +124,7 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
         List<String> dir = ServiceBenchmarksConfig.getSourceProcessDir(Constant.BENCHMARK_NAME);
 
         if (Constant.CFG_OPTION.equals(CallGraphOption.SPARK) || Constant.CFG_OPTION.equals(CallGraphOption.JASMINE)) {
-            // 开启spack
+            // enable spark
             Options.v().setPhaseOption("cg.spark", "on");
             Options.v().setPhaseOption("cg.spark", "verbose:true");
             Options.v().setPhaseOption("cg.spark", "enabled:true");
@@ -138,7 +139,7 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
             Options.v().setPhaseOption("cg.spark", "simple-edges-bidirectional:false");
             Options.v().set_verbose(true);
         } else {
-            // 使用CHA模式
+            // use CHA
             Options.v().setPhaseOption("cg.cha", "on");
             Options.v().setPhaseOption("cg.cha", "enabled:true");
             Options.v().setPhaseOption("cg.cha", "verbose:true");
@@ -148,7 +149,7 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
 
         Options.v().set_no_bodies_for_excluded(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_output_format(Options.output_format_none);
+        Options.v().set_output_format(Options.output_format_jimple);
         Options.v().set_whole_program(true);
         Options.v().set_process_dir(dir);
         Options.v().set_src_prec(Options.src_prec_apk_class_jimple);
@@ -158,6 +159,7 @@ public class SetUpApplication implements ITaintWrapperDataFlowAnalysis {
         Options.v().set_ignore_resolution_errors(true);
         Options.v().setPhaseOption("jb", "use-original-names:true");
         Options.v().set_soot_classpath(getSootClassPath());
+        Options.v().set_output_jar(false);
         Main.v().autoSetOptions();
         configureCallgraph();
 
