@@ -24,6 +24,8 @@ public class ServiceBenchmarksConfig {
 
     // should also modify the dependency dir for the benchmark app
     public static String getDependencyDir(BenchmarkName benchmark) { ... }
+
+}
 ```
 
 3.2 Modify `FlowDroid_Jasmine/dataleak/src/main/java/com/taint/analysis/config/Constant.java` to include the string benchmark name to enum `BenchmarkName` in the method `convertStringToBenchmarkName(String str)`
